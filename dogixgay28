@@ -1,4 +1,4 @@
-local Player = "LocalPlayer"
+local Player = _G.Base
 
 local Remote = game.ReplicatedStorage.PlaceStructure.ClientPlacedStructure
 local Plr = game:GetService("Players").LocalPlayer
