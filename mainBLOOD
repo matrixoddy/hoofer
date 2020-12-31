@@ -237,7 +237,7 @@ function blood.new(isdark, gprojectName, thinProject)
 		Size = UDim2.new(0, 800, 0, 310),
 		ZIndex = 2,
 		ImageTransparency = 0,
-		Image = "rbxassetid://6081737669"
+		Image = "rbxassetid://6159175073"
     })
     
     self2.modal = self:Create("TextButton", {
