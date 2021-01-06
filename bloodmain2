@@ -1,4 +1,8 @@
-local blood = {}
+
+local senv = getsenv(game.Players.LocalPlayer.PlayerGui.LoadSaveGUI.LoadSaveClient.LocalScript)
+hookfunction(senv.ban, function()
+ end)
+blood = {}
 blood.gs = {}
 
 setmetatable(blood.gs, {
@@ -17,7 +21,6 @@ end
 local TweenService = blood.gs["TweenService"]
 local CoreGui = blood.gs["CoreGui"]
 local RunService = blood.gs["RunService"]
-
 
 -- functions
 function destroygui()
@@ -46,9 +49,7 @@ function GetPos()
   LocationCFrame = CFrame.new(LocationX, LocationY, LocationZ)
   LocationVec = Vector3.new(LocationX, LocationY, LocationZ)
 
-
 end
-
 
 function library()
   destroygui()
@@ -123,8 +124,6 @@ function library()
 
     scrollbar_color = Color3.fromRGB(118, 118, 121),
   }
-
-
 
   local mouse = blood.gs["Players"].LocalPlayer:GetMouse()
 
@@ -312,8 +311,6 @@ local shadow = self:Create("ImageLabel", {
   SliceCenter = Rect.new(10, 10, 118, 118)
 })
 
-
-
 self2.picofphoenix = self:Create("ImageLabel", {
   Name = "VeryNicePic",
   ZIndex = 2,
@@ -431,9 +428,6 @@ function self2:Category(name)
     ScrollBarImageTransparency = 1 --
   })
 
-
-
-
   category.L = blood:Create("Frame", {
     Name = "L",
     BackgroundColor3 = Color3.new(1, 1, 1),
@@ -526,7 +520,6 @@ function self2:Category(name)
   end
 
   category.L.Parent = category.container
-
 
   local function calculateSector()
     if thinProject then
@@ -1565,3 +1558,4 @@ return self2, bloodData
 end
 
 return blood
+end
