@@ -486,7 +486,7 @@ function library:Window(name)
         DropdownFrame.VerticalScrollBarPosition = Enum.VerticalScrollBarPosition.Left
         DropdownFrame.ZIndex = 5 + zindex
         DropdownFrame.ScrollingDirection = Enum.ScrollingDirection.Y
-        DropdownFrame.ScrollBarImageColor3 = Color3.fromRGB(220, 221, 225)
+        DropdownFrame.ScrollBarImageColor3 = Color3.fromRGB(255, 0, 0)
         table.insert(dropdowns, DropdownFrame)
         local dropFunctions = {}
         local canvasSize = 0
