@@ -87,7 +87,7 @@ function library:Window(name)
     UiWindow.Position = UDim2.new(0, xOffset, 0, 20)
     UiWindow.Size = UDim2.new(0, 207, 0, 33)
     UiWindow.ZIndex = 4 + zindex
-    UiWindow.Active = true
+    UiWindow.Active = false
     Dragify(UiWindow)
 
     xOffset = xOffset + 230
