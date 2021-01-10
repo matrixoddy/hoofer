@@ -54,7 +54,7 @@ function Library:CreateMain(Options)
 		ResetOnSpawn = false,
 	})
 
-	Main.Motherframe = Library:Create("ImageLabel", {
+	Main.Motherframe = Library:Create("frame", {
 		Name = "Motherframe",
 		Active = true,
 		AnchorPoint = Vector2.new(0.5, 0.5),
