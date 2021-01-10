@@ -507,7 +507,7 @@ function Library:CreateMain(Options)
 						Position = UDim2.new(0.0120000001, 0, 0, 32),
 						Size = UDim2.new(0.974008501, 0, 0, 10),
 						AutoButtonColor = false,
-						Image = "rbxassetid://3570695787",
+						Image = "rbxassetid://3883502641",
 						ImageColor3 = Themes.CharcoalContrast,
 						ScaleType = Enum.ScaleType.Slice,
 						SliceCenter = Rect.new(100, 100, 100, 100),
