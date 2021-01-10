@@ -54,26 +54,13 @@ function Library:CreateMain(Options)
 		ResetOnSpawn = false,
 	})
 
-	Main.Motherframe = Library:Create("frame", {
+	Main.Motherframe = Library:Create("Frame", {
 		Name = "Motherframe",
-		Active = true,
-		AnchorPoint = Vector2.new(0.5, 0.5),
-		BackgroundTransparency = 0,
-		BackgroundColor3 = theme.main_container,
+		BackgroundColor3 = Themes.Background,
 		BorderSizePixel = 0,
 		Position = UDim2.new(0.5, -400, 0.5, -225),
 		Size = UDim2.new(0, 700, 0, 460),
-		ZIndex = 2,
-		ImageTransparency = 0,
-		Image = "rbxassetid://102396405"
-		
-		
-		
-		
-		--BackgroundColor3 = Themes.Background,
-		--BorderSizePixel = 0,
-		--Position = UDim2.new(0.5, -400, 0.5, -225),
-		--Size = UDim2.new(0, 700, 0, 460),
+
 	})
 
 	table.insert(Objects.Background, Main.Motherframe)
