@@ -151,7 +151,7 @@ function Library:CreateMain(Options)
 		BackgroundTransparency = 1.000,
 		Position = UDim2.new(0, 0, 0, 0),
 		Size = UDim2.new(0.95, 0, 0, 30),
-		Image = "rbxassetid://3570695787",
+		Image = "rbxassetid://3883502641",
 		ImageColor3 = Themes.Background,
 		ScaleType = Enum.ScaleType.Slice,
 		SliceCenter = Rect.new(100, 100, 100, 100),
