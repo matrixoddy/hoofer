@@ -863,7 +863,7 @@ function self2:Category(name)
           cheat.dropdown = blood:Create("ImageButton", {
             Name = "Dropdown",
             BackgroundColor3 = Color3.new(1, 1, 1),
-            BackgroundTransparency = 1,
+            BackgroundTransparency = 0,
             Size = UDim2.new(1, 0, 1, 0),
             ZIndex = 2,
             Image = "rbxassetid://3570695787",
