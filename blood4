@@ -1564,5 +1564,2055 @@ self2.tip.Parent = self2.topbar
 return self2, bloodData
 end
 
+local blood = {}
+blood.gs = {}
+
+setmetatable(blood.gs, {
+  __index = function(_, service)
+  return game:GetService(service)
+  end,
+  __newindex = function(t, i)
+  t[i] = nil
+  return
+end
+})
+
+-- variables
+
+
+local TweenService = blood.gs["TweenService"]
+local CoreGui = blood.gs["CoreGui"]
+local RunService = blood.gs["RunService"]
+
+
+-- functions
+function destroygui()
+if CoreGui:FindFirstChild("bloodUI") then CoreGui:FindFirstChild("bloodUI"):Destroy() end
+end destroygui()
+
+function notify(title,text,duration)
+  game.StarterGui:SetCore("SendNotification", {
+    Title = title; -- the title (ofc)
+    Text = text; -- what the text says (ofc)
+    Icon = "rbxassetid://3883502641"; -- the image if u want.
+    Duration = duration; -- how long the notification should in secounds
+  })
+end
+
+function makebase(pos)
+  local Event = game:GetService("ReplicatedStorage").PropertyPurchasing.ClientExpandedProperty
+  Event:FireServer(base, pos)
+end
+
+function GetPos()
+  LocationX = game.Players.LocalPlayer.Character.HumanoidRootPart.Position.x + 7
+  LocationY = game.Players.LocalPlayer.Character.HumanoidRootPart.Position.y
+  LocationZ = game.Players.LocalPlayer.Character.HumanoidRootPart.Position.z
+
+  LocationCFrame = CFrame.new(LocationX, LocationY, LocationZ)
+  LocationVec = Vector3.new(LocationX, LocationY, LocationZ)
+
+
+end
+
+
+function library()
+  destroygui()
+  blood.theme = { -- light
+    main_container = Color3.fromRGB(32, 32, 33),
+    separator_color = Color3.fromRGB(255,0,0),
+
+    text_color = Color3.fromRGB(206, 206, 206),
+
+    category_button_background = Color3.fromRGB(63, 62, 65),
+    category_button_border = Color3.fromRGB(255,0,0),
+
+    checkbox_checked = _G.effectcolor,
+    checkbox_outer = Color3.fromRGB(84, 81, 86),
+    checkbox_inner = Color3.fromRGB(132, 132, 136),
+
+    slider_color = Color3.fromRGB(177, 177, 177),
+    slider_color_sliding = _G.effectcolor,
+    slider_background = Color3.fromRGB(88, 84, 90),
+    slider_text = Color3.fromRGB(177, 177, 177),
+
+    textbox_background = Color3.fromRGB(103, 103, 106),
+    textbox_background_hover = _G.effectcolor,
+    textbox_text = Color3.fromRGB(195, 195, 195),
+    textbox_text_hover = Color3.fromRGB(232, 232, 232),
+    textbox_placeholder = Color3.fromRGB(135, 135, 138),
+
+    dropdown_background = Color3.fromRGB(88, 88, 91),
+    dropdown_text = Color3.fromRGB(195, 195, 195),
+    dropdown_text_hover = Color3.fromRGB(232, 232, 232),
+    dropdown_scrollbar_color = Color3.fromRGB(118, 118, 121),
+
+    button_background = Color3.fromRGB(103, 103, 106),
+    button_background_hover = Color3.fromRGB(137, 137, 141),
+    button_background_down = _G.effectcolor,
+
+    scrollbar_color = Color3.fromRGB(118, 118, 121),
+  }
+
+  blood.dark_theme = { -- dark
+    main_container = Color3.fromRGB(32, 32, 33),
+    separator_color = _G.effectcolor,
+
+    text_color = Color3.fromRGB(206, 206, 206),
+
+    category_button_background = Color3.fromRGB(0,0,0),
+    category_button_border = _G.effectcolor,
+
+    checkbox_checked = _G.effectcolor,
+    checkbox_outer = Color3.fromRGB(84, 81, 86),
+    checkbox_inner = Color3.fromRGB(132, 132, 136),
+
+    slider_color = Color3.fromRGB(177, 177, 177),
+    slider_color_sliding = _G.effectcolor,
+    slider_background = Color3.fromRGB(88, 84, 90),
+    slider_text = Color3.fromRGB(177, 177, 177),
+
+    textbox_background = Color3.fromRGB(103, 103, 106),
+    textbox_background_hover = _G.effectcolor,
+    textbox_text = Color3.fromRGB(195, 195, 195),
+    textbox_text_hover = Color3.fromRGB(232, 232, 232),
+    textbox_placeholder = Color3.fromRGB(135, 135, 138),
+
+    dropdown_background = Color3.fromRGB(88, 88, 91),
+    dropdown_text = Color3.fromRGB(195, 195, 195),
+    dropdown_text_hover = Color3.fromRGB(232, 232, 232),
+    dropdown_scrollbar_color = Color3.fromRGB(118, 118, 121),
+
+    button_background = Color3.fromRGB(103, 103, 106),
+    button_background_hover = Color3.fromRGB(137, 137, 141),
+    button_background_down = _G.effectcolor,
+
+    scrollbar_color = Color3.fromRGB(118, 118, 121),
+  }
+
+
+
+  local mouse = blood.gs["Players"].LocalPlayer:GetMouse()
+
+  function blood:Create(class, properties)
+    local object = Instance.new(class)
+
+    for prop, val in next, properties do
+      if object[prop] and prop ~= "Parent" then
+        object[prop] = val
+      end
+    end
+
+    return object
+  end
+
+  function blood:addShadow(object, transparency)
+    local shadow = self:Create("ImageLabel", {
+      Name = "Shadow",
+      AnchorPoint = Vector2.new(0.5, 0.5),
+      BackgroundTransparency = 1,
+      Position = UDim2.new(0.5, 0, 0.5, 4),
+      Size = UDim2.new(1, 6, 1, 6),
+      Image = "rbxassetid://1316045217",
+      ImageTransparency = transparency and true or 0.5,
+      ImageColor3 = Color3.fromRGB(35, 35, 35),
+      ScaleType = Enum.ScaleType.Slice,
+      SliceCenter = Rect.new(10, 10, 118, 118)
+    })
+
+    shadow.Parent = object
+  end
+
+  function blood.new(isdark, gprojectName, thinProject)
+    local bloodObject = {}
+    local self2 = bloodObject
+    local self = blood
+
+    if not blood.gs["RunService"]:IsStudio() and self.gs["CoreGui"]:FindFirstChild("bloodUI") then
+      warn("blood:", "instance already exists in coregui!")
+
+      return
+    end
+
+    local theme = blood.theme
+    local projectName = false
+    local thinMenu = false
+
+    if isdark == true then theme = blood.dark_theme end
+    if gprojectName then projectName = gprojectName end
+    if thinProject then thinMenu = thinProject end
+
+    local toggled = true
+    local typing = false
+    local firstCategory = true
+    local savedposition = UDim2.new(0.5, 0, 0.5, 0)
+
+
+    local bloodData
+    bloodData = {
+      UpConnection = nil,
+      ToggleKey = Enum.KeyCode.Home,
+    }
+
+    self2.ChangeToggleKey = function(NewKey)
+    bloodData.ToggleKey = NewKey
+
+    if not projectName then
+      self2.tip.Text = "Press '".. string.sub(tostring(NewKey), 14) .."' to hide this menu"
+    end
+
+    if bloodData.UpConnection then
+      bloodData.UpConnection:Disconnect()
+    end
+
+    bloodData.UpConnection = blood.gs["UserInputService"].InputEnded:Connect(function(Input)
+    if Input.KeyCode == bloodData.ToggleKey and not typing then
+      toggled = not toggled
+
+      pcall(function() self2.modal.Modal = toggled end)
+
+      if toggled then
+        pcall(self2.container.TweenPosition, self2.container, savedposition, "Out", "Sine", 0.5, true)
+      else
+        savedposition = self2.container.Position;
+        pcall(self2.container.TweenPosition, self2.container, UDim2.new(savedposition.Width.Scale, savedposition.Width.Offset, 1.5, 0), "Out", "Sine", 0.5, true)
+      end
+    end
+    end)
+  end
+
+  self2.ChangeBackgroundImage = function(ImageID, Transparency)
+  self2.container.Image = ImageID
+
+  if Transparency then
+    self2.container.ImageTransparency = Transparency
+  else
+    self2.container.ImageTransparency = 0.8
+  end
+end
+
+bloodData.UpConnection = blood.gs["UserInputService"].InputEnded:Connect(function(Input)
+if Input.KeyCode == bloodData.ToggleKey and not typing then
+  toggled = not toggled
+
+  if toggled then
+    self2.container:TweenPosition(UDim2.new(0.5, 0, 0.5, 0), "Out", "Sine", 0.5, true)
+  else
+    self2.container:TweenPosition(UDim2.new(0.5, 0, 1.5, 0), "Out", "Sine", 0.5, true)
+  end
+end
+end)
+
+self2.userinterface = self:Create("ScreenGui", {
+  Name = "bloodUI",
+  ZIndexBehavior = Enum.ZIndexBehavior.Global,
+  ResetOnSpawn = false,
+})
+
+self2.container = self:Create("ImageLabel", {
+  Draggable = true,
+  Active = true,
+  Name = "Container",
+  AnchorPoint = Vector2.new(0.5, 0.5),
+  BackgroundTransparency = 1,
+  BackgroundColor3 = theme.main_container,
+  BorderSizePixel = 0,
+  Position = UDim2.new(0.5, 0, 0.5, 0),
+  Size = UDim2.new(0, 800, 0, 500),
+  ZIndex = 2,
+  ImageTransparency = 0,
+  Image = "rbxassetid://3883502641"
+})
+
+self2.modal = self:Create("TextButton", {
+  Text = "";
+  Transparency = 1;
+  Modal = true;
+}) self2.modal.Parent = self2.userinterface;
+
+if thinProject and typeof(thinProject) == "UDim2" then
+  self2.container.Size = thinProject
+end
+
+self2.container.Draggable = true
+self2.container.Active = true
+
+self2.sidebar = self:Create("Frame", {
+  Name = "Sidebar",
+  BackgroundColor3 = Color3.new(0.976471, 0.937255, 1),
+  BackgroundTransparency = 1,
+  BorderColor3 = Color3.new(0.745098, 0.713726, 0.760784),
+  Size = UDim2.new(0, 120, 1, -30),
+  Position = UDim2.new(0, 0, 0, 30),
+  ZIndex = 2,
+})
+
+self2.categories = self:Create("Frame", {
+  Name = "Categories",
+  BackgroundColor3 = Color3.new(0.976471, 0.937255, 1),
+  ClipsDescendants = true,
+  BackgroundTransparency = 1,
+  BorderColor3 = Color3.new(0.745098, 0.713726, 0.760784),
+  Size = UDim2.new(1, -120, 1, -30),
+  AnchorPoint = Vector2.new(1, 0),
+  Position = UDim2.new(1, 0, 0, 30),
+  ZIndex = 2,
+})
+self2.categories.ClipsDescendants = true
+
+self2.topbar = self:Create("Frame", {
+  Name = "Topbar",
+  ZIndex = 2,
+  Size = UDim2.new(1,0,0,30),
+  BackgroundTransparency = 2
+})
+local shadow = self:Create("ImageLabel", {
+  Name = "Shadow",
+  BackgroundTransparency = 1,
+  Position = UDim2.new(0, 30, 0, 0),
+  Size = UDim2.new(1, 6, 1, 6),
+  Image = "rbxassetid://1316045217",
+  ImageTransparency = transparency and true or 0.5,
+  ImageColor3 = Color3.fromRGB(35, 35, 35),
+  ScaleType = Enum.ScaleType.Slice,
+  SliceCenter = Rect.new(10, 10, 118, 118)
+})
+
+
+
+self2.picofphoenix = self:Create("ImageLabel", {
+  Name = "VeryNicePic",
+  ZIndex = 2,
+  BackgroundTransparency = 1,
+  Position = UDim2.new(0, 30, 0, 0),
+  Size = UDim2.new(0, 35, 0, 35),
+  Image = "rbxassetid://1316045217",
+})
+
+self2.tip = self:Create("TextLabel", {
+  Name = "TopbarTip",
+  ZIndex = 2,
+  Size = UDim2.new(1, -30, 0, 30),
+  Position = UDim2.new(0, 30, 0, 0),
+  Text = "Press '".. string.sub(tostring(self.ToggleKey), 14) .."' to hide this menu",
+  Font = Enum.Font.GothamSemibold,
+  TextSize = 13,
+  TextXAlignment = Enum.TextXAlignment.Left,
+  BackgroundTransparency = 1,
+  TextColor3 = theme.text_color,
+})
+
+if projectName then
+  self2.tip.Text = projectName
+else
+  self2.tip.Text = "Press '".. string.sub(tostring(self.ToggleKey), 14) .."' to hide this menu"
+end
+
+function blood.settitle(text)
+  self2.tip.Text = tostring(text)
+end
+
+local separator = self:Create("Frame", {
+  Name = "Separator",
+  BackgroundColor3 = theme.separator_color,
+  BorderSizePixel = 0,
+  Position = UDim2.new(0, 118, 0, 30),
+  Size = UDim2.new(0, 1, 1, -30),
+  ZIndex = 6,
+})
+separator.Parent = self2.container
+separator = nil
+
+local separator = self:Create("Frame", {
+  Name = "Separator",
+  BackgroundColor3 = theme.separator_color,
+  BorderSizePixel = 0,
+  Position = UDim2.new(0, 0, 0, 30),
+  Size = UDim2.new(1, 0, 0, 1),
+  ZIndex = 6,
+})
+separator.Parent = self2.container
+separator = nil
+
+local uipagelayout = self:Create("UIPageLayout", {
+  Padding = UDim.new(0, 10),
+  FillDirection = Enum.FillDirection.Vertical,
+  TweenTime = 0.7,
+  EasingStyle = Enum.EasingStyle.Quad,
+  EasingDirection = Enum.EasingDirection.InOut,
+  SortOrder = Enum.SortOrder.LayoutOrder,
+})
+uipagelayout.Parent = self2.categories
+uipagelayout = nil
+
+local uipadding = self:Create("UIPadding", {
+  PaddingTop = UDim.new(0, 3),
+  PaddingLeft = UDim.new(0, 2)
+})
+uipadding.Parent = self2.sidebar
+uipadding = nil
+
+local uilistlayout = self:Create("UIListLayout", {
+  SortOrder = Enum.SortOrder.LayoutOrder
+})
+uilistlayout.Parent = self2.sidebar
+uilistlayout = nil
+
+function self2:Category(name)
+  local category = {}
+
+  category.button = blood:Create("TextButton", {
+    Name = name,
+    BackgroundColor3 = theme.category_button_background,
+    BackgroundTransparency = 1,
+    BorderMode = Enum.BorderMode.Inset,
+    BorderColor3 = _G.effectcolor,
+    Size = UDim2.new(1, -4, 0, 25),
+    ZIndex = 2,
+    AutoButtonColor = false,
+    Font = Enum.Font.GothamSemibold,
+    Text = name,
+    TextColor3 = Color3.new(3, 3, 3),
+    TextSize = 14
+  })
+
+  spawn(function()
+  while wait() do
+    category.button.BorderColor3 = _G.effectcolor
+  end
+  end)
+
+  category.container = blood:Create("ScrollingFrame", {
+    Name = name,
+    BackgroundTransparency = 1,
+    ScrollBarThickness = 4,
+    BorderSizePixel = 0,
+    Size = UDim2.new(1, 0, 1, 0),
+    ZIndex = 2,
+    CanvasSize = UDim2.new(0, 0, 0, 0),
+    ScrollBarImageColor3 = theme.scrollbar_color or Color3.fromRGB(118, 118, 121),
+    BottomImage = "rbxassetid://967852042",
+    MidImage = "rbxassetid://967852042",
+    TopImage = "rbxassetid://967852042",
+    ScrollBarImageTransparency = 1 --
+  })
+
+
+
+
+  category.L = blood:Create("Frame", {
+    Name = "L",
+    BackgroundColor3 = Color3.new(1, 1, 1),
+    BackgroundTransparency = 1,
+    Position = UDim2.new(0, 10, 0, 3),
+    Size = UDim2.new(0.5, -20, 1, -3),
+    ZIndex = 2
+  })
+
+  if not thinProject then
+    category.R = blood:Create("Frame", {
+      Name = "R",
+      AnchorPoint = Vector2.new(1, 0),
+      BackgroundColor3 = Color3.new(1, 1, 1),
+      BackgroundTransparency = 1,
+      Position = UDim2.new(1, -10, 0, 3),
+      Size = UDim2.new(0.5, -20, 1, -3),
+      ZIndex = 2
+    })
+  end
+
+  if thinProject then
+    category.L.Size = UDim2.new(1, -20, 1, -3)
+  end
+
+  if firstCategory then
+
+    blood.gs["TweenService"]:Create(category.container, TweenInfo.new(0.3), {ScrollBarImageTransparency = 0}):Play()
+  end
+
+  do
+    local uilistlayout = blood:Create("UIListLayout", {
+      SortOrder = Enum.SortOrder.LayoutOrder
+    })
+
+    local uilistlayout2 = blood:Create("UIListLayout", {
+      SortOrder = Enum.SortOrder.LayoutOrder
+    })
+
+    local function computeSizeChange()
+      local largestListSize = 0
+
+      largestListSize = uilistlayout.AbsoluteContentSize.Y
+
+      if uilistlayout2.AbsoluteContentSize.Y > largestListSize then
+        largestListSize = largestListSize
+      end
+
+      category.container.CanvasSize = UDim2.new(0, 0, 0, largestListSize + 5)
+    end
+
+    uilistlayout:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(computeSizeChange)
+    uilistlayout2:GetPropertyChangedSignal("AbsoluteContentSize"):Connect(computeSizeChange)
+
+    uilistlayout.Parent = category.L
+    uilistlayout2.Parent = category.R
+  end
+
+  category.button.MouseEnter:Connect(function()
+  blood.gs["TweenService"]:Create(category.button, TweenInfo.new(0.2), {BackgroundTransparency = 0.5}):Play()
+  end)
+  category.button.MouseLeave:Connect(function()
+  blood.gs["TweenService"]:Create(category.button, TweenInfo.new(0.2), {BackgroundTransparency = 1}):Play()
+  end)
+  category.button.MouseButton1Down:Connect(function()
+  for _, categoryf in next, self2.userinterface["Container"]["Categories"]:GetChildren() do
+    if categoryf:IsA("ScrollingFrame") then
+      if categoryf ~= category.container then
+
+        blood.gs["TweenService"]:Create(categoryf, TweenInfo.new(0.3), {ScrollBarImageTransparency = 1}):Play()
+      end
+    end
+  end
+
+  blood.gs["TweenService"]:Create(category.button, TweenInfo.new(0.2), {BackgroundTransparency = 0.2}):Play()
+
+  blood.gs["TweenService"]:Create(category.container, TweenInfo.new(0.3), {ScrollBarImageTransparency = 0}):Play()
+
+  self2.categories["UIPageLayout"]:JumpTo(category.container)
+  end)
+  category.button.MouseButton1Up:Connect(function()
+  blood.gs["TweenService"]:Create(category.button, TweenInfo.new(0.2), {BackgroundTransparency = 1}):Play()
+  end)
+
+  category.container.Parent = self2.categories
+  category.button.Parent = self2.sidebar
+
+  if not thinProject then
+    category.R.Parent = category.container
+  end
+
+  category.L.Parent = category.container
+
+
+  local function calculateSector()
+    if thinProject then
+      return "L"
+    end
+
+    local R = #category.R:GetChildren() - 1
+    local L = #category.L:GetChildren() - 1
+
+    if L > R then
+      return "R"
+    else
+      return "L"
+    end
+  end
+
+  function category:Sector(name)
+    local sector = {}
+
+    sector.frame = blood:Create("Frame", {
+      Name = name,
+      BackgroundColor3 = Color3.new(1, 1, 1),
+      BackgroundTransparency = 1,
+      Size = UDim2.new(1, 0, 0, 25),
+      ZIndex = 2
+    })
+
+    sector.container = blood:Create("Frame", {
+      Name = "Container",
+      BackgroundColor3 = Color3.new(1, 1, 1),
+      BackgroundTransparency = 1,
+      Position = UDim2.new(0, 0, 0, 22),
+      Size = UDim2.new(1, -5, 1, -30),
+      ZIndex = 2
+    })
+
+    sector.title = blood:Create("TextLabel", {
+      Name = "Title",
+      Text = name,
+      BackgroundColor3 = Color3.new(1, 1, 1),
+      BackgroundTransparency = 1,
+      Size = UDim2.new(1, -5, 0, 25),
+      ZIndex = 2,
+      Font = Enum.Font.GothamSemibold,
+      TextColor3 = Color3.new(0, 1, 0),
+      TextSize = 14,
+      TextXAlignment = Enum.TextXAlignment.Left,
+    })
+
+    local uilistlayout = blood:Create("UIListLayout", {
+      SortOrder = Enum.SortOrder.LayoutOrder
+    })
+
+    uilistlayout.Changed:Connect(function()
+    pcall(function()
+    sector.frame.Size = UDim2.new(1, 0, 0, sector.container["UIListLayout"].AbsoluteContentSize.Y + 25)
+    sector.container.Size = UDim2.new(1, 0, 0, sector.container["UIListLayout"].AbsoluteContentSize.Y)
+    end)
+    end)
+    uilistlayout.Parent = sector.container
+    uilistlayout = nil
+
+    function sector:Cheat(kind, name, callback, data)
+      local cheat = {}
+      cheat.value = nil
+
+      cheat.frame = blood:Create("Frame", {
+        Name = name,
+        BackgroundColor3 = Color3.new(1, 1, 1),
+        BackgroundTransparency = 1,
+        Size = UDim2.new(1, 0, 0, 25),
+        ZIndex = 2,
+      })
+
+      cheat.label = blood:Create("TextLabel", {
+        Name = "Title",
+        BackgroundColor3 = Color3.new(1, 1, 1),
+        BackgroundTransparency = 1,
+        Size = UDim2.new(1, 0, 1, 0),
+        ZIndex = 2,
+        Font = Enum.Font.Gotham,
+        TextColor3 = theme.text_color,
+        TextSize = 13,
+        Text = name,
+        TextXAlignment = Enum.TextXAlignment.Left
+      })
+
+      cheat.container	= blood:Create("Frame", {
+        Name = "Container",
+        AnchorPoint = Vector2.new(1, 0.5),
+        BackgroundColor3 = Color3.new(1, 1, 1),
+        BackgroundTransparency = 1,
+        Position = UDim2.new(1, 0, 0.5, 0),
+        Size = UDim2.new(0, 150, 0, 22),
+        ZIndex = 2,
+      })
+
+      if kind then
+        if string.lower(kind) == "checkbox" or string.lower(kind) == "toggle" then
+          if data then
+            if data.enabled then
+              cheat.value = true
+            end
+          end
+
+          cheat.checkbox = blood:Create("Frame", {
+            Name = "Checkbox",
+            AnchorPoint = Vector2.new(1, 0),
+            BackgroundColor3 = Color3.new(1, 1, 1),
+            BackgroundTransparency = 1,
+            Position = UDim2.new(1, 0, 0, 0),
+            Size = UDim2.new(0, 25, 0, 25),
+            ZIndex = 2,
+          })
+
+          cheat.outerbox = blood:Create("ImageLabel", {
+            Name = "Outer",
+            AnchorPoint = Vector2.new(1, 0.5),
+            BackgroundColor3 = Color3.new(1, 1, 1),
+            BackgroundTransparency = 1,
+            Position = UDim2.new(1, 0, 0.5, 0),
+            Size = UDim2.new(0, 20, 0, 20),
+            ZIndex = 2,
+            Image = "rbxassetid://3570695787",
+            ImageColor3 = theme.checkbox_outer,
+            ScaleType = Enum.ScaleType.Slice,
+            SliceCenter = Rect.new(100, 100, 100, 100),
+            SliceScale = 0.06,
+          })
+
+          cheat.checkboxbutton = blood:Create("ImageButton", {
+            AnchorPoint = Vector2.new(0.5, 0.5),
+            Name = "CheckboxButton",
+            BackgroundColor3 = Color3.new(1, 1, 1),
+            BackgroundTransparency = 1,
+            Position = UDim2.new(0.5, 0, 0.5, 0),
+            Size = UDim2.new(0, 14, 0, 14),
+            ZIndex = 2,
+            Image = "rbxassetid://3570695787",
+            ImageColor3 = theme.checkbox_inner,
+            ScaleType = Enum.ScaleType.Slice,
+            SliceCenter = Rect.new(100, 100, 100, 100),
+            SliceScale = 0.04
+          })
+
+          if data then
+            if data.enabled then
+              blood.gs["TweenService"]:Create(cheat.outerbox, TweenInfo.new(0.2), {ImageColor3 = _G.effectcolor}):Play()
+              blood.gs["TweenService"]:Create(cheat.checkboxbutton, TweenInfo.new(0.2), {ImageColor3 = _G.effectcolor}):Play()
+            end
+          end
+
+          cheat.checkboxbutton.MouseEnter:Connect(function()
+          local lightertheme = Color3.fromRGB((theme.checkbox_outer.R * 255) + 20, (theme.checkbox_outer.G * 255) + 20, (theme.checkbox_outer.B * 255) + 20)
+          blood.gs["TweenService"]:Create(cheat.outerbox, TweenInfo.new(0.2), {ImageColor3 = lightertheme}):Play()
+          end)
+          cheat.checkboxbutton.MouseLeave:Connect(function()
+          if not cheat.value then
+            blood.gs["TweenService"]:Create(cheat.outerbox, TweenInfo.new(0.2), {ImageColor3 = theme.checkbox_outer}):Play()
+          else
+            blood.gs["TweenService"]:Create(cheat.outerbox, TweenInfo.new(0.2), {ImageColor3 = _G.effectcolor}):Play()
+          end
+          end)
+          cheat.checkboxbutton.MouseButton1Down:Connect(function()
+          if cheat.value then
+            blood.gs["TweenService"]:Create(cheat.checkboxbutton, TweenInfo.new(0.2), {ImageColor3 = theme.checkbox_outer}):Play()
+          else
+            blood.gs["TweenService"]:Create(cheat.checkboxbutton, TweenInfo.new(0.2), {ImageColor3 = _G.effectcolor}):Play()
+          end
+          end)
+          cheat.checkboxbutton.MouseButton1Up:Connect(function()
+          cheat.value = not cheat.value
+
+          if callback then
+            local s, e = pcall(function()
+            callback(cheat.value)
+            end)
+
+            if not s then warn("error: ".. e) end
+          end
+
+          if cheat.value then
+            blood.gs["TweenService"]:Create(cheat.outerbox, TweenInfo.new(0.2), {ImageColor3 = _G.effectcolor}):Play()
+          else
+            blood.gs["TweenService"]:Create(cheat.outerbox, TweenInfo.new(0.2), {ImageColor3 = theme.checkbox_outer}):Play()
+            blood.gs["TweenService"]:Create(cheat.checkboxbutton, TweenInfo.new(0.2), {ImageColor3 = theme.checkbox_inner}):Play()
+          end
+          end)
+
+          cheat.checkboxbutton.Parent = cheat.outerbox
+          cheat.outerbox.Parent = cheat.container
+        elseif string.lower(kind) == "color" or string.lower(kind) == "colorpicker" then
+          cheat.value = Color3.new(1, 1, 1);
+
+          if data then
+            if data.color then
+              cheat.value = data.color
+            end
+          end
+
+          local hsvimage = "rbxassetid://4613607014"
+          local lumienceimage = "rbxassetid://4613627894"
+
+          cheat.hsvbar = blood:Create("ImageButton", {
+            AnchorPoint = Vector2.new(0.5, 0.5),
+            Name = "HSVBar",
+            BackgroundColor3 = Color3.new(1, 1, 1),
+            BackgroundTransparency = 1,
+            Position = UDim2.new(0.5, 0, 0.5, 0),
+            Size = UDim2.new(1, 0, 0, 9),
+            ZIndex = 2,
+            Image = hsvimage
+          })
+
+          cheat.arrowpreview = blood:Create("ImageLabel", {
+            Name = "ArrowPreview",
+            BackgroundColor3 = Color3.new(1, 1, 1),
+            BackgroundTransparency = 1,
+            ImageTransparency = 0.25,
+            Position = UDim2.new(0.5, 0, 0.5, -6),
+            Size = UDim2.new(0, 6, 0, 6),
+            ZIndex = 3,
+            Image = "rbxassetid://2500573769",
+            Rotation = -90
+          })
+
+          cheat.hsvbar.MouseButton1Down:Connect(function()
+          local rs = blood.gs["RunService"]
+          local uis = blood.gs["UserInputService"]local last = cheat.value;
+
+          cheat.hsvbar.Image = hsvimage
+
+          while uis:IsMouseButtonPressed'MouseButton1' do
+            local mouseloc = uis:GetMouseLocation()
+            local sx = cheat.arrowpreview.AbsoluteSize.X / 2;
+            local offset = (mouseloc.x - cheat.hsvbar.AbsolutePosition.X) - sx
+            local scale = offset / cheat.hsvbar.AbsoluteSize.X
+            local position = math.clamp(offset, -sx, cheat.hsvbar.AbsoluteSize.X - sx) / cheat.hsvbar.AbsoluteSize.X
+
+            blood.gs["TweenService"]:Create(cheat.arrowpreview, TweenInfo.new(0.1), {Position = UDim2.new(position, 0, 0.5, -6)}):Play()
+
+            cheat.value = Color3.fromHSV(math.clamp(scale, 0, 1), 1, 1)
+
+            if cheat.value ~= last then
+              last = cheat.value
+
+              if callback then
+                local s, e = pcall(function()
+                callback(cheat.value)
+                end)
+
+                if not s then warn("error: ".. e) end
+              end
+            end
+
+            rs.RenderStepped:wait()
+          end
+          end)
+          cheat.hsvbar.MouseButton2Down:Connect(function()
+          local rs = blood.gs["RunService"]
+          local uis = blood.gs["UserInputService"]
+          local last = cheat.value;
+
+          cheat.hsvbar.Image = lumienceimage
+
+          while uis:IsMouseButtonPressed'MouseButton2' do
+            local mouseloc = uis:GetMouseLocation()
+            local sx = cheat.arrowpreview.AbsoluteSize.X / 2
+            local offset = (mouseloc.x - cheat.hsvbar.AbsolutePosition.X) - sx
+            local scale = offset / cheat.hsvbar.AbsoluteSize.X
+            local position = math.clamp(offset, -sx, cheat.hsvbar.AbsoluteSize.X - sx) / cheat.hsvbar.AbsoluteSize.X
+
+            blood.gs["TweenService"]:Create(cheat.arrowpreview, TweenInfo.new(0.1), {Position = UDim2.new(position, 0, 0.5, -6)}):Play()
+
+            cheat.value = Color3.fromHSV(1, 0, 1 - math.clamp(scale, 0, 1))
+
+            if cheat.value ~= last then
+              last = cheat.value
+
+              if callback then
+                local s, e = pcall(function()
+                callback(cheat.value)
+                end)
+
+                if not s then warn("error: ".. e) end
+              end
+            end
+
+            rs.RenderStepped:wait()
+          end
+          end)
+
+          function cheat:SetValue(value)
+            cheat.value = value
+            if cheat.value then
+              blood.gs["TweenService"]:Create(cheat.outerbox, TweenInfo.new(0.2), {ImageColor3 = _G.effectcolor}):Play()
+              blood.gs["TweenService"]:Create(cheat.checkboxbutton, TweenInfo.new(0.2), {ImageColor3 = _G.effectcolor}):Play()
+            else
+              blood.gs["TweenService"]:Create(cheat.outerbox, TweenInfo.new(0.2), {ImageColor3 = theme.checkbox_outer}):Play()
+              blood.gs["TweenService"]:Create(cheat.checkboxbutton, TweenInfo.new(0.2), {ImageColor3 = theme.checkbox_inner}):Play()
+            end
+            if callback then
+              local s, e = pcall(function()
+              callback(cheat.value)
+              end)
+              if not s then
+                warn("error: "..e)
+              end
+            end
+          end
+
+          cheat.hsvbar.Parent = cheat.container
+          cheat.arrowpreview.Parent = cheat.hsvbar
+        elseif string.lower(kind) == "dropdown" then
+          if data then
+            if data.default then
+              cheat.value = data.default
+            elseif data.options then
+              cheat.value = data.options[1]
+            else
+              cheat.value = "None"
+            end
+          end
+
+          local options
+
+          if data and data.options then
+            options = data.options
+          end
+
+          cheat.dropped = false
+
+          cheat.dropdown = blood:Create("ImageButton", {
+            Name = "Dropdown",
+            BackgroundColor3 = Color3.new(1, 1, 1),
+            BackgroundTransparency = 1,
+            Size = UDim2.new(1, 0, 1, 0),
+            ZIndex = 2,
+            Image = "rbxassetid://3570695787",
+            ImageColor3 = theme.dropdown_background,
+            ImageTransparency = 0.5,
+            ScaleType = Enum.ScaleType.Slice,
+            SliceCenter = Rect.new(100, 100, 100, 100),
+            SliceScale = 0.02
+          })
+
+          cheat.selected = blood:Create("TextLabel", {
+            Name = "Selected",
+            BackgroundColor3 = Color3.new(1, 1, 1),
+            BackgroundTransparency = 1,
+            Position = UDim2.new(0, 10, 0, 0),
+            Size = UDim2.new(1, -35, 1, 0),
+            ZIndex = 2,
+            Font = Enum.Font.Gotham,
+            Text = tostring(cheat.value),
+            TextColor3 = theme.dropdown_text,
+            TextSize = 13,
+            TextXAlignment = Enum.TextXAlignment.Left
+          })
+
+          cheat.list = blood:Create("ScrollingFrame", {
+            Name = "List",
+            BackgroundColor3 = theme.dropdown_background,
+            BackgroundTransparency = 0.5,
+            BorderSizePixel = 0,
+            Position = UDim2.new(0, 0, 1, 0),
+            Size = UDim2.new(1, 0, 0, 100),
+            ZIndex = 3,
+            BottomImage = "rbxassetid://967852042",
+            MidImage = "rbxassetid://967852042",
+            TopImage = "rbxassetid://967852042",
+            ScrollBarThickness = 4,
+            VerticalScrollBarInset = Enum.ScrollBarInset.None,
+            ScrollBarImageColor3 = theme.dropdown_scrollbar_color
+          })
+
+          local uilistlayout = blood:Create("UIListLayout", {
+            SortOrder = Enum.SortOrder.LayoutOrder,
+            Padding = UDim.new(0, 2)
+          })
+          uilistlayout.Parent = cheat.list
+          uilistlayout = nil
+          local uipadding = blood:Create("UIPadding", {
+            PaddingLeft = UDim.new(0, 2)
+          })
+          uipadding.Parent = cheat.list
+          uipadding = nil
+
+          local function refreshOptions()
+            if cheat.dropped then
+              cheat.fadelist()
+            end
+
+            for _, child in next, cheat.list:GetChildren() do
+              if child:IsA("TextButton") then
+                child:Destroy()
+              end
+            end
+
+            for _, value in next, options do
+              local button = blood:Create("TextButton", {
+                BackgroundColor3 = Color3.new(1, 1, 1),
+                BackgroundTransparency = 1,
+                Size = UDim2.new(1, 0, 0, 20),
+                ZIndex = 3,
+                Font = Enum.Font.Gotham,
+                Text = value,
+                TextColor3 = theme.dropdown_text,
+                TextSize = 13
+              })
+
+              button.Parent = cheat.list
+
+              button.MouseEnter:Connect(function()
+              blood.gs["TweenService"]:Create(button, TweenInfo.new(0.1), {TextColor3 = theme.dropdown_text_hover}):Play()
+              end)
+              button.MouseLeave:Connect(function()
+              blood.gs["TweenService"]:Create(button, TweenInfo.new(0.1), {TextColor3 = theme.dropdown_text}):Play()
+              end)
+              button.MouseButton1Click:Connect(function()
+              if cheat.dropped then
+                cheat.value = value
+                cheat.selected.Text = value
+
+                cheat.fadelist()
+
+                if callback then
+                  local s, e = pcall(function()
+                  callback(cheat.value)
+                  end)
+
+                  if not s then warn("error: ".. e) end
+                end
+              end
+              end)
+
+
+              blood.gs["TweenService"]:Create(button, TweenInfo.new(0), {TextTransparency = 1}):Play()
+            end
+
+            blood.gs["TweenService"]:Create(cheat.list, TweenInfo.new(0), {Size = UDim2.new(1, 0, 0, 0), Position = UDim2.new(0, 0, 1, 0), CanvasSize = UDim2.new(0, 0, 0, cheat.list["UIListLayout"].AbsoluteContentSize.Y), ScrollBarImageTransparency = 1, BackgroundTransparency = 1}):Play()
+          end
+
+
+          function cheat.fadelist()
+            cheat.dropped = not cheat.dropped
+
+            if cheat.dropped then
+              for _, button in next, cheat.list:GetChildren() do
+                if button:IsA("TextButton") then
+                  blood.gs["TweenService"]:Create(button, TweenInfo.new(0.2), {TextTransparency = 0}):Play()
+                end
+              end
+
+              blood.gs["TweenService"]:Create(cheat.list, TweenInfo.new(0.2), {Size = UDim2.new(1, 0, 0, math.clamp(cheat.list["UIListLayout"].AbsoluteContentSize.Y, 0, 150)), Position = UDim2.new(0, 0, 1, 0), ScrollBarImageTransparency = 0, BackgroundTransparency = 0.5}):Play()
+            else
+              for _, button in next, cheat.list:GetChildren() do
+                if button:IsA("TextButton") then
+                  blood.gs["TweenService"]:Create(button, TweenInfo.new(0.2), {TextTransparency = 1}):Play()
+                end
+              end
+
+              blood.gs["TweenService"]:Create(cheat.list, TweenInfo.new(0.2), {Size = UDim2.new(1, 0, 0, 0), Position = UDim2.new(0, 0, 1, 0), ScrollBarImageTransparency = 1, BackgroundTransparency = 1}):Play()
+            end
+          end
+
+          cheat.dropdown.MouseEnter:Connect(function()
+          blood.gs["TweenService"]:Create(cheat.selected, TweenInfo.new(0.1), {TextColor3 = theme.dropdown_text_hover}):Play()
+          end)
+          cheat.dropdown.MouseLeave:Connect(function()
+          blood.gs["TweenService"]:Create(cheat.selected, TweenInfo.new(0.1), {TextColor3 = theme.dropdown_text}):Play()
+          end)
+          cheat.dropdown.MouseButton1Click:Connect(function()
+          cheat.fadelist()
+          end)
+
+          refreshOptions()
+
+          function cheat:RemoveOption(value)
+            local removed = false
+            for index, option in next, options do
+              if option == value then
+                table.remove(options, index)
+                removed = true
+                break
+              end
+            end
+
+            if removed then
+              refreshOptions()
+            end
+
+            return removed
+          end
+
+          function cheat:AddOption(value)
+            table.insert(options, value)
+
+            refreshOptions()
+          end
+
+          function cheat:SetValue(value)
+            cheat.selected.Text = value
+            cheat.value = value
+
+            if cheat.dropped then
+              cheat.fadelist()
+            end
+
+            if callback then
+              local s, e = pcall(function()
+              callback(cheat.value)
+              end)
+
+              if not s then warn("error: ".. e) end
+            end
+          end
+
+          cheat.selected.Parent = cheat.dropdown
+          cheat.dropdown.Parent = cheat.container
+          cheat.list.Parent = cheat.container
+        elseif string.lower(kind) == "textbox" then
+          local placeholdertext = data and data.placeholder
+
+          cheat.background = blood:Create("ImageLabel", {
+            Name = "Background",
+            BackgroundColor3 = Color3.new(1, 1, 1),
+            BackgroundTransparency = 1,
+            Size = UDim2.new(1, 0, 1, 0),
+            ZIndex = 2,
+            Image = "rbxassetid://3570695787",
+            ImageColor3 = theme.textbox_background,
+            ImageTransparency = 0.5,
+            ScaleType = Enum.ScaleType.Slice,
+            SliceCenter = Rect.new(100, 100, 100, 100),
+            SliceScale = 0.02
+          })
+
+          cheat.textbox = blood:Create("TextBox", {
+            Name = "Textbox",
+            BackgroundColor3 = Color3.new(1, 1, 1),
+            BackgroundTransparency = 1,
+            Position = UDim2.new(0, 0, 0, 0),
+            Size = UDim2.new(1, 0, 1, 0),
+            ZIndex = 2,
+            Font = Enum.Font.Gotham,
+            Text = "",
+            TextColor3 = theme.textbox_text,
+            PlaceholderText = placeholdertext or "Value",
+            TextSize = 13,
+            TextXAlignment = Enum.TextXAlignment.Center,
+            ClearTextOnFocus = false
+          })
+
+          cheat.background.MouseEnter:Connect(function()
+          blood.gs["TweenService"]:Create(cheat.textbox, TweenInfo.new(0.1), {TextColor3 = theme.textbox_text_hover}):Play()
+          end)
+          cheat.background.MouseLeave:Connect(function()
+          blood.gs["TweenService"]:Create(cheat.textbox, TweenInfo.new(0.1), {TextColor3 = theme.textbox_text}):Play()
+          end)
+          cheat.textbox.Focused:Connect(function()
+          typing = true
+
+          blood.gs["TweenService"]:Create(cheat.background, TweenInfo.new(0.2), {ImageColor3 = _G.effectcolor}):Play()
+          end)
+          cheat.textbox.FocusLost:Connect(function()
+          typing = false
+
+          blood.gs["TweenService"]:Create(cheat.background, TweenInfo.new(0.2), {ImageColor3 = theme.textbox_background}):Play()
+          blood.gs["TweenService"]:Create(cheat.textbox, TweenInfo.new(0.1), {TextColor3 = theme.textbox_text}):Play()
+
+          cheat.value = cheat.textbox.Text
+
+          if callback then
+            local s, e = pcall(function()
+            callback(cheat.value)
+            end)
+
+            if not s then warn("error: "..e) end
+          end
+          end)
+          function cheat:SetValue(value)
+            cheat.value = tostring(value)
+            cheat.textbox.Text = tostring(val)
+          end
+
+          cheat.background.Parent = cheat.container
+          cheat.textbox.Parent = cheat.container
+        elseif string.lower(kind) == "slider" then
+          cheat.value = 0
+
+          local suffix = data.suffix or ""
+          local minimum = data.min or 0
+          local maximum = data.max or 1
+          local default = data.default
+          local precise = data.precise
+
+          local moveconnection
+          local releaseconnection
+
+          cheat.sliderbar = blood:Create("ImageButton", {
+            Name = "Sliderbar",
+            AnchorPoint = Vector2.new(1, 0.5),
+            BackgroundColor3 = Color3.new(1, 1, 1),
+            BackgroundTransparency = 1,
+            Position = UDim2.new(1, 0, 0.5, 0),
+            Size = UDim2.new(1, 0, 0, 9),
+            ZIndex = 2,
+            Image = "rbxassetid://3570695787",
+            ImageColor3 = theme.slider_background,
+            ImageTransparency = 0.5,
+            ScaleType = Enum.ScaleType.Slice,
+            SliceCenter = Rect.new(100, 100, 100, 100),
+            SliceScale = 0.02,
+          })
+
+          cheat.numbervalue = blood:Create("TextLabel", {
+            Name = "Value",
+            AnchorPoint = Vector2.new(0, 0.5),
+            BackgroundColor3 = Color3.new(1, 1, 1),
+            BackgroundTransparency = 1,
+            Position = UDim2.new(0.5, 5, 0.5, 0),
+            Size = UDim2.new(1, 0, 0, 13),
+            ZIndex = 2,
+            Font = Enum.Font.Gotham,
+            TextXAlignment = Enum.TextXAlignment.Left,
+            Text = "",
+            TextTransparency = 1,
+            TextColor3 = theme.slider_text,
+            TextSize = 13,
+          })
+
+          cheat.visiframe = blood:Create("ImageLabel", {
+            Name = "Frame",
+            BackgroundColor3 = Color3.new(1, 1, 1),
+            BackgroundTransparency = 1,
+            Size = UDim2.new(0.5, 0, 1, 0),
+            ZIndex = 2,
+            Image = "rbxassetid://3570695787",
+            ImageColor3 = _G.effectcolor,
+            ScaleType = Enum.ScaleType.Slice,
+            SliceCenter = Rect.new(100, 100, 100, 100),
+            SliceScale = 0.02
+          })
+
+          if data.default then
+            local size = math.clamp(data.default - cheat.sliderbar.AbsolutePosition.X, 0, 150)
+            local percent = size / 150
+            local perc = default/maximum
+            cheat.value = math.floor((minimum + (maximum - minimum) * percent) * 100) / 100
+            blood.gs["TweenService"]:Create(cheat.visiframe, TweenInfo.new(0.1), {
+              Size = UDim2.new(perc, 0, 1, 0),
+            }):Play()
+            if callback then
+              local s, e = pcall(function()
+              callback(cheat.value)
+              end)
+
+              if not s then warn("error: ".. e) end
+            end
+          end
+
+          function cheat:SetValue(value)
+            local size = math.clamp(value - cheat.sliderbar.AbsolutePosition.X, 0, 150)
+            local percent = size / 150
+            local perc = default/maximum
+            cheat.value = math.floor((minimum + (maximum - minimum) * percent) * 100) / 100
+            blood.gs["TweenService"]:Create(cheat.visiframe, TweenInfo.new(0.1), {
+              Size = UDim2.new(perc, 0, 1, 0),
+            }):Play()
+            if callback then
+              local s, e = pcall(function()
+              callback(cheat.value)
+              end)
+
+              if not s then warn("error: ".. e) end
+            end
+          end
+
+          cheat.sliderbar.MouseButton1Down:Connect(function()
+          local size = math.clamp(mouse.X - cheat.sliderbar.AbsolutePosition.X, 0, 150)
+          local percent = size / 150
+
+          cheat.value = math.floor((minimum + (maximum - minimum) * percent) * 100) / 100
+          if precise then
+            cheat.numbervalue.Text = math.ceil(tostring(cheat.value)) .. suffix
+          else
+            cheat.numbervalue.Text = tostring(cheat.value) .. suffix
+          end
+
+          if callback then
+            local s, e = pcall(function()
+            if data.precise then
+              callback(cheat.value)
+            else
+              callback(math.ceil(cheat.value))
+            end
+            end)
+
+            if not s then warn("error: ".. e) end
+          end
+
+          blood.gs["TweenService"]:Create(cheat.visiframe, TweenInfo.new(0.1), {
+            Size = UDim2.new(size / 150, 0, 1, 0),
+            ImageColor3 = _G.effectcolor
+          }):Play()
+
+          blood.gs["TweenService"]:Create(cheat.numbervalue, TweenInfo.new(0.1), {
+            Position = UDim2.new(size / 150, 5, 0.5, 0),
+            TextTransparency = 0
+          }):Play()
+
+          moveconnection = mouse.Move:Connect(function()
+          local size = math.clamp(mouse.X - cheat.sliderbar.AbsolutePosition.X, 0, 150)
+          local percent = size / 150
+
+          cheat.value = math.floor((minimum + (maximum - minimum) * percent) * 100) / 100
+          if precise then
+            cheat.numbervalue.Text = math.ceil(tostring(cheat.value)) .. suffix
+          else
+            cheat.numbervalue.Text = tostring(cheat.value) .. suffix
+          end
+
+          if callback then
+            local s, e = pcall(function()
+            if data.precise then
+              callback(cheat.value)
+            else
+              callback(math.ceil(cheat.value))
+            end
+            end)
+
+            if not s then warn("error: ".. e) end
+          end
+
+          blood.gs["TweenService"]:Create(cheat.visiframe, TweenInfo.new(0.1), {
+            Size = UDim2.new(size / 150, 0, 1, 0),
+            ImageColor3 = _G.effectcolor
+          }):Play()
+
+          local Position = UDim2.new(size / 150, 5, 0.5, 0);
+
+          if Position.Width.Scale >= 0.6 then
+            Position = UDim2.new(1, -cheat.numbervalue.TextBounds.X, 0.5, 10);
+          end
+
+          blood.gs["TweenService"]:Create(cheat.numbervalue, TweenInfo.new(0.1), {
+            Position = Position,
+            TextTransparency = 0
+          }):Play()
+          end)
+
+          releaseconnection = blood.gs["UserInputService"].InputEnded:Connect(function(Mouse)
+          if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
+
+            blood.gs["TweenService"]:Create(cheat.visiframe, TweenInfo.new(0.1), {
+              ImageColor3 = Color3.fromRGB(177, 177, 177)
+            }):Play()
+
+            blood.gs["TweenService"]:Create(cheat.numbervalue, TweenInfo.new(0.1), {
+              TextTransparency = 1
+            }):Play()
+
+            moveconnection:Disconnect()
+            moveconnection = nil
+            releaseconnection:Disconnect()
+            releaseconnection = nil
+          end
+          end)
+          end)
+
+          cheat.visiframe.Parent = cheat.sliderbar
+          cheat.numbervalue.Parent = cheat.sliderbar
+          cheat.sliderbar.Parent = cheat.container
+        elseif string.lower(kind) == "button" then
+          local button_text = data and data.text
+
+          cheat.background = blood:Create("ImageLabel", {
+            Name = "Background",
+            BackgroundColor3 = Color3.new(1, 1, 1),
+            BackgroundTransparency = 1,
+            Size = UDim2.new(1, 0, 1, 0),
+            ZIndex = 2,
+            Image = "rbxassetid://3570695787",
+            ImageColor3 = theme.button_background,
+            ImageTransparency = 0.5,
+            ScaleType = Enum.ScaleType.Slice,
+            SliceCenter = Rect.new(100, 100, 100, 100),
+            SliceScale = 0.02
+          })
+
+          cheat.button = blood:Create("TextButton", {
+            Name = "Button",
+            BackgroundColor3 = Color3.new(1, 1, 1),
+            BackgroundTransparency = 1,
+            Position = UDim2.new(0, 0, 0, 0),
+            Size = UDim2.new(1, 0, 1, 0),
+            ZIndex = 2,
+            Font = Enum.Font.Gotham,
+            Text = button_text or "Button",
+            TextColor3 = theme.textbox_text,
+            TextSize = 13,
+            TextXAlignment = Enum.TextXAlignment.Center
+          })
+
+          cheat.button.MouseEnter:Connect(function()
+          blood.gs["TweenService"]:Create(cheat.background, TweenInfo.new(0.2), {ImageColor3 = theme.button_background_hover}):Play()
+          end)
+          cheat.button.MouseLeave:Connect(function()
+          blood.gs["TweenService"]:Create(cheat.background, TweenInfo.new(0.2), {ImageColor3 = theme.button_background}):Play()
+          end)
+          cheat.button.MouseButton1Down:Connect(function()
+          blood.gs["TweenService"]:Create(cheat.background, TweenInfo.new(0.2), {ImageColor3 = _G.effectcolor}):Play()
+          end)
+          cheat.button.MouseButton1Up:Connect(function()
+          blood.gs["TweenService"]:Create(cheat.background, TweenInfo.new(0.2), {ImageColor3 = theme.button_background}):Play()
+
+          if callback then
+            local s, e = pcall(function()
+            callback(cheat.button)
+            end)
+
+            if not s then warn("error: ".. e) end
+          end
+          end)
+
+          function cheat:Fire()
+            if callback then
+              local s, e = pcall(function()
+              callback(cheat.button)
+              end)
+
+              if not s then warn("error: ".. e) end
+            end
+          end
+
+          cheat.background.Parent = cheat.container
+          cheat.button.Parent = cheat.container
+
+        elseif string.lower(kind) == "keybind" or string.lower(kind) == "bind" then
+          local callback_bind = data and data.bind
+          local connection
+          cheat.holding = false
+
+          cheat.background = blood:Create("ImageLabel", {
+            Name = "Background",
+            BackgroundColor3 = Color3.new(1, 1, 1),
+            BackgroundTransparency = 1,
+            Size = UDim2.new(1, 0, 1, 0),
+            ZIndex = 2,
+            Image = "rbxassetid://3570695787",
+            ImageColor3 = theme.button_background,
+            ImageTransparency = 0.5,
+            ScaleType = Enum.ScaleType.Slice,
+            SliceCenter = Rect.new(100, 100, 100, 100),
+            SliceScale = 0.02
+          })
+
+          cheat.button = blood:Create("TextButton", {
+            Name = "Button",
+            BackgroundColor3 = Color3.new(1, 1, 1),
+            BackgroundTransparency = 1,
+            Position = UDim2.new(0, 0, 0, 0),
+            Size = UDim2.new(1, 0, 1, 0),
+            ZIndex = 2,
+            Font = Enum.Font.Gotham,
+            Text = "Click to Bind",
+            TextColor3 = theme.textbox_text,
+            TextSize = 13,
+            TextXAlignment = Enum.TextXAlignment.Center
+          })
+
+          cheat.button.MouseEnter:Connect(function()
+          blood.gs["TweenService"]:Create(cheat.background, TweenInfo.new(0.2), {ImageColor3 = theme.button_background_hover}):Play()
+          end)
+          cheat.button.MouseLeave:Connect(function()
+          blood.gs["TweenService"]:Create(cheat.background, TweenInfo.new(0.2), {ImageColor3 = theme.button_background}):Play()
+          end)
+          cheat.button.MouseButton1Down:Connect(function()
+          blood.gs["TweenService"]:Create(cheat.background, TweenInfo.new(0.2), {ImageColor3 = _G.effectcolor}):Play()
+          end)
+          cheat.button.MouseButton2Down:Connect(function()
+          blood.gs["TweenService"]:Create(cheat.background, TweenInfo.new(0.2), {ImageColor3 = _G.effectcolor}):Play()
+          end)
+          cheat.button.MouseButton1Up:Connect(function()
+          local text123 = cheat.button.Text;
+          blood.gs["TweenService"]:Create(cheat.background, TweenInfo.new(0.2), {ImageColor3 = theme.button_background}):Play()
+          cheat.button.Text = "Press key..."
+
+          if connection then
+            connection:Disconnect()
+            connection = nil
+          end
+          cheat.holding = false
+
+          connection = blood.gs["UserInputService"].InputBegan:Connect(function(Input)
+          if Input.UserInputType.Name == "Keyboard" and Input.KeyCode ~= bloodData.ToggleKey and Input.KeyCode ~= Enum.KeyCode.Backspace then
+            cheat.button.Text = "Bound to " .. tostring(Input.KeyCode.Name)
+
+            if connection then
+              connection:Disconnect()
+              connection = nil
+            end
+
+            delay(0, function()
+            callback_bind = Input.KeyCode
+            cheat.value = Input.KeyCode
+
+            if callback then
+              local s, e = pcall(function()
+              callback(Input.KeyCode,cheat.button)
+              end)
+
+              if not s then warn("error: ".. e) end
+            end
+            end)
+          elseif Input.KeyCode == Enum.KeyCode.Backspace then
+            callback_bind = nil
+            cheat.button.Text = "Click to Bind"
+            cheat.value = nil
+            cheat.holding = false
+            delay(0, function()
+            if callback then
+              local s, e = pcall(function()
+              callback()
+              end)
+
+              if not s then warn("error: ".. e) end
+            end
+            end)
+
+            connection:Disconnect()
+            connection = nil
+          elseif Input.KeyCode == bloodData.ToggleKey then
+            cheat.button.Text = "Invalid Key";
+            cheat.value = nil
+            if connection then
+              connection:Disconnect()
+              connection = nil
+            end
+          end
+          end)
+          end)
+
+          cheat.button.MouseButton2Up:Connect(function()
+          blood.gs["TweenService"]:Create(cheat.background, TweenInfo.new(0.2), {ImageColor3 = theme.button_background}):Play()
+          cheat.value = nil
+          callback_bind = nil
+          cheat.button.Text = "Click to Bind"
+          cheat.holding = false
+
+          delay(0, function()
+          if callback then
+            local s, e = pcall(function()
+            callback()
+            end)
+
+            if not s then warn("error: ".. e) end
+          end
+          end)
+
+          if connection then
+            connection:Disconnect()
+            connection = nil
+          end
+          end)
+
+          function cheat:SetValue(value)
+            cheat.value = tostring(value)
+            cheat.button.Text = "Bound to " .. tostring(value)
+          end
+
+          blood.gs["UserInputService"].InputBegan:Connect(function(Input, Process)
+          if callback_bind and Input.KeyCode == callback_bind and not Process then
+            cheat.holding = true
+            if callback then
+              local s, e = pcall(function()
+              callback(Input.KeyCode)
+              end)
+
+              if not s then warn("error: ".. e) end
+            end
+          end
+          end)
+          blood.gs["UserInputService"].InputBegan:Connect(function(Input, Process)
+          if callback_bind and Input.KeyCode == callback_bind and not Process then
+            cheat.holding = true
+          end
+          end)
+
+          if callback_bind then
+            cheat.button.Text = "Bound to " .. tostring(callback_bind.Name)
+          end
+
+          cheat.background.Parent = cheat.container
+          cheat.button.Parent = cheat.container
+        end
+      end
+
+      cheat.frame.Parent = sector.container
+      cheat.label.Parent = cheat.frame
+      cheat.container.Parent = cheat.frame
+
+      return cheat
+    end
+
+    sector.frame.Parent = category[calculateSector()]
+    sector.container.Parent = sector.frame
+    sector.title.Parent = sector.frame
+
+    return sector
+  end
+
+  firstCategory = false
+
+  return category
+end
+
+self:addShadow(self2.container, 0)
+
+self2.categories.ClipsDescendants = true
+
+if not blood.gs["RunService"]:IsStudio() then
+  self2.userinterface.Parent = self.gs["CoreGui"]
+else
+  self2.userinterface.Parent = self.gs["Players"].LocalPlayer:WaitForChild("PlayerGui")
+end
+
+self2.container.Parent = self2.userinterface
+self2.categories.Parent = self2.container
+self2.sidebar.Parent = self2.container
+self2.topbar.Parent = self2.container
+self2.tip.Parent = self2.topbar
+
+return self2, bloodData
+end
+
 return blood
+end
+
+
+local Intro = Instance.new("ScreenGui")
+local IntroImage = Instance.new("ImageLabel")
+local _1 = Instance.new("TextLabel")
+local _2 = Instance.new("TextLabel")
+local _3 = Instance.new("TextLabel")
+local _4 = Instance.new("TextLabel")
+local _5 = Instance.new("TextLabel")
+local _6 = Instance.new("TextLabel")
+local _7 = Instance.new("TextLabel")
+
+-- Properties
+
+Intro.Name = "Intro"
+Intro.Parent = game.CoreGui
+
+IntroImage.Name = "IntroImage"
+IntroImage.Parent = Intro
+IntroImage.BackgroundColor3 = Color3.new(0, 0.298039, 0.498039)
+IntroImage.BackgroundTransparency = 1
+IntroImage.BorderColor3 = Color3.new(1, 1, 1)
+IntroImage.BorderSizePixel = 0
+IntroImage.Position = UDim2.new(0.400, 0, 0.200, 0)
+IntroImage.Size = UDim2.new(0, 356, 0, 347)
+IntroImage.Image = "rbxassetid://1130382821"
+
+_1.Name = "1"
+_1.Parent = IntroImage
+_1.BackgroundColor3 = Color3.fromRGB(249, 214, 46)
+_1.BackgroundTransparency = 1
+_1.BorderSizePixel = 0
+_1.Position = UDim2.new(0.109550565, 0, 0.423631132, 0)
+_1.Size = UDim2.new(0, 40, 0, 53)
+_1.Font = Enum.Font.ArialBold
+_1.FontSize = Enum.FontSize.Size14
+_1.Text = " "
+_1.TextColor3 = Color3.new(255, 0, 0)
+_1.TextScaled = true
+_1.TextSize = 14
+_1.TextWrapped = true
+
+_2.Name = "2"
+_2.Parent = IntroImage
+_2.BackgroundColor3 = Color3.new(0, 0.298039, 0.498039)
+_2.BackgroundTransparency = 1
+_2.BorderSizePixel = 0
+_2.Position = UDim2.new(0.221910119, 0, 0.423631132, 0)
+_2.Size = UDim2.new(0, 40, 0, 53)
+_2.Font = Enum.Font.ArialBold
+_2.FontSize = Enum.FontSize.Size14
+_2.Text = "B"
+_2.TextColor3 = Color3.new(255, 0, 0)
+_2.TextScaled = true
+_2.TextSize = 14
+_2.TextWrapped = true
+
+_3.Name = "3"
+_3.Parent = IntroImage
+_3.BackgroundColor3 = Color3.new(0, 0.298039, 0.498039)
+_3.BackgroundTransparency = 1
+_3.BorderSizePixel = 0
+_3.Position = UDim2.new(0.334269673, 0, 0.423631132, 0)
+_3.Size = UDim2.new(0, 40, 0, 53)
+_3.Font = Enum.Font.ArialBold
+_3.FontSize = Enum.FontSize.Size14
+_3.Text = "L"
+_3.TextColor3 = Color3.new(255, 0, 0)
+_3.TextScaled = true
+_3.TextSize = 14
+_3.TextWrapped = true
+
+_4.Name = "4"
+_4.Parent = IntroImage
+_4.BackgroundColor3 = Color3.new(0, 0.298039, 0.498039)
+_4.BackgroundTransparency = 1
+_4.BorderSizePixel = 0
+_4.Position = UDim2.new(0.446629226, 0, 0.423631132, 0)
+_4.Size = UDim2.new(0, 40, 0, 53)
+_4.Font = Enum.Font.ArialBold
+_4.FontSize = Enum.FontSize.Size14
+_4.Text = "O"
+_4.TextColor3 = Color3.new(255, 0, 0)
+_4.TextScaled = true
+_4.TextSize = 14
+_4.TextWrapped = true
+
+_5.Name = "5"
+_5.Parent = IntroImage
+_5.BackgroundColor3 = Color3.new(0, 0.298039, 0.498039)
+_5.BackgroundTransparency = 1
+_5.BorderSizePixel = 0
+_5.Position = UDim2.new(0.55898881, 0, 0.423631132, 0)
+_5.Size = UDim2.new(0, 40, 0, 53)
+_5.Font = Enum.Font.ArialBold
+_5.FontSize = Enum.FontSize.Size14
+_5.Text = "O"
+_5.TextColor3 = Color3.new(255, 0, 0)
+_5.TextScaled = true
+_5.TextSize = 14
+_5.TextWrapped = true
+
+_6.Name = "6"
+_6.Parent = IntroImage
+_6.BackgroundColor3 = Color3.new(0, 0.298039, 0.498039)
+_6.BackgroundTransparency = 1
+_6.BorderSizePixel = 0
+_6.Position = UDim2.new(0.671348333, 0, 0.423631132, 0)
+_6.Size = UDim2.new(0, 40, 0, 53)
+_6.Font = Enum.Font.ArialBold
+_6.FontSize = Enum.FontSize.Size14
+_6.Text = "D"
+_6.TextColor3 = Color3.new(255, 0, 0)
+_6.TextScaled = true
+_6.TextSize = 14
+_6.TextWrapped = true
+
+
+
+
+
+
+
+_7.Name = "7"
+_7.Parent = IntroImage
+_7.BackgroundColor3 = Color3.new(1, 1, 1)
+_7.BackgroundTransparency = 1
+_7.BorderSizePixel = 0
+_7.Position = UDim2.new(0.775280893, 0, 0.423631132, 0)
+_7.Size = UDim2.new(0, 40, 0, 53)
+_7.Font = Enum.Font.ArialBold
+_7.FontSize = Enum.FontSize.Size14
+_7.Text = " "
+_7.TextColor3 = Color3.new(255, 0, 0)
+_7.TextScaled = true
+_7.TextSize = 14
+_7.TextWrapped = true
+
+TweenService:Create(_1, TweenInfo.new(4), {TextTransparency = 1}):Play()
+TweenService:Create(_2, TweenInfo.new(4), {TextTransparency = 1}):Play()
+TweenService:Create(_3, TweenInfo.new(4), {TextTransparency = 1}):Play()
+TweenService:Create(_4, TweenInfo.new(4), {TextTransparency = 1}):Play()
+TweenService:Create(_5, TweenInfo.new(4), {TextTransparency = 1}):Play()
+TweenService:Create(_6, TweenInfo.new(4), {TextTransparency = 1}):Play()
+TweenService:Create(_7, TweenInfo.new(4), {TextTransparency = 1}):Play()
+TweenService:Create(IntroImage, TweenInfo.new(4), {ImageTransparency = 1}):Play()
+
+wait(4)
+Intro:Destroy()
+
+_G.effectcolor = Color3.fromRGB(255,0,0)
+
+function changetheme(image,cola,col2)
+
+_G.effectcolor = cola
+
+if game.CoreGui["bloodUI"] then
+game.CoreGui["bloodUI"].Container.Image = image
+for i,v in pairs(game.CoreGui["bloodUI"]:GetDescendants()) do
+  if v.Name == "Separator" then
+    v.BackgroundColor3 = col2
+  elseif v.Name == "CheckboxButton" then
+    if v.ImageColor3 ~= Color3.fromRGB(132, 132, 136) then
+      v.ImageColor3 = cola
+    end
+  elseif v.Name == "Outer" then
+    if v.ImageColor3 ~= Color3.fromRGB(84, 81, 86) then
+      v.ImageColor3 = cola
+    end
+  end
+end
+end
+
+end
+
+
+-- Variables
+function _G.Teleport(XP,YP,ZP)
+-- Config How Many Blocks It Will Tp You Untill The Final Destination:
+local XTpEvery = 25
+local ZTpEvery = 25
+local YTpEvery = 25
+--Time to Tp Every:
+local Timer = 0.035
+--Script:
+local pos = game:GetService('Players').LocalPlayer.Character.HumanoidRootPart
+if pos.Position.X < XP then
+for x = pos.Position.X,XP,XTpEvery do
+game.Players.LocalPlayer.Character:MoveTo(Vector3.new(x,pos.Position.Y,pos.Position.Z))
+local part = Instance.new("Part", workspace)
+part.Anchored = true
+part.Size = Vector3.new(10,0.1,10)
+part.Material = "Glass"
+part.BrickColor = BrickColor.Random()
+part.Transparency = 0.7
+part.Position = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position + Vector3.new(0,-3.05,0)
+wait(Timer)
+part.Destroy(part)
+end
+else
+for x = pos.Position.X,XP,-XTpEvery do
+game.Players.LocalPlayer.Character:MoveTo(Vector3.new(x,pos.Position.Y,pos.Position.Z))
+local part = Instance.new("Part", workspace)
+part.Anchored = true
+part.Size = Vector3.new(10,0.1,10)
+part.Material = "Glass"
+part.BrickColor = BrickColor.Random()
+part.Transparency = 0.7
+part.Position = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position + Vector3.new(0,-3.05,0)
+wait(Timer)
+part.Destroy(part)
+end
+end
+if pos.Position.Z < ZP then
+for z = pos.Position.Z,ZP,ZTpEvery do
+game.Players.LocalPlayer.Character:MoveTo(Vector3.new(pos.Position.X,pos.Position.Y,z))
+local part = Instance.new("Part", workspace)
+part.Anchored = true
+part.Size = Vector3.new(10,0.1,10)
+part.Material = "Glass"
+part.BrickColor = BrickColor.Random()
+part.Transparency = 0.7
+part.Position = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position + Vector3.new(0,-3.05,0)
+wait(Timer)
+part.Destroy(part)
+end
+else
+for z = pos.Position.Z,ZP,-ZTpEvery do
+game.Players.LocalPlayer.Character:MoveTo(Vector3.new(pos.Position.X,pos.Position.Y,z))
+local part = Instance.new("Part", workspace)
+part.Anchored = true
+part.Size = Vector3.new(10,0.1,10)
+part.Material = "Glass"
+part.BrickColor = BrickColor.Random()
+part.Transparency = 0.7
+part.Position = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position + Vector3.new(0,-3.05,0)
+wait(Timer)
+part.Destroy(part)
+end
+end
+if pos.Position.Y < YP then
+for High = pos.Position.Y,YP,YTpEvery do
+game.Players.LocalPlayer.Character:MoveTo(Vector3.new(pos.Position.X ,High ,pos.Position.Z))
+local part = Instance.new("Part", workspace)
+part.Anchored = true
+part.Size = Vector3.new(10,0.1,10)
+part.Material = "Glass"
+part.BrickColor = BrickColor.Random()
+part.Transparency = 0.7
+part.Position = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position + Vector3.new(0,-3.05,0)
+wait(Timer)
+part.Destroy(part)
+end
+else
+for High = pos.Position.Y,YP,-YTpEvery do
+game.Players.LocalPlayer.Character:MoveTo(Vector3.new(pos.Position.X ,High ,pos.Position.Z))
+local part = Instance.new("Part", workspace)
+part.Anchored = true
+part.Size = Vector3.new(10,0.1,10)
+part.Material = "Glass"
+part.BrickColor = BrickColor.Random()
+part.Transparency = 0.7
+part.Position = game:GetService("Players").LocalPlayer.Character.HumanoidRootPart.Position + Vector3.new(0,-3.05,0)
+wait(Timer)
+part.Destroy(part)
+end
+end
+game.Players.LocalPlayer.Character:MoveTo(Vector3.new(XP,YP,ZP))
+end
+
+function OpTiOn(Wood, PlayerName, Quantitys)
+local Counter = 0
+local HitPoints={
+['Beesaxe']= 1.4;
+['AxeAmber']= 3.39;
+['ManyAxe']= 10.2;
+['BasicHatchet']= 0.2;
+['Axe1']= 0.55;
+['Axe2']= 0.93;
+['AxeAlphaTesters']= 1.5;
+['Rukiryaxe']= 1.68;
+['Axe3']= 1.45;
+['AxeBetaTesters']= 1.45;
+['FireAxe']= 0.6;
+['SilverAxe']= 1.6;
+['EndTimesAxe']= 1.58;
+['AxeChicken']= 0.9;
+['CandyCaneAxe']= 0;
+['AxeTwitter']= 1.65
+}
+function axe(Val)
+local A_1 = Val.CutEvent
+local A_2 = 
+{
+	["tool"] = game.Players.LocalPlayer.Character:FindFirstChild("Tool"), 
+	["faceVector"] = Vector3.new(0, 0, -1), 
+	["height"] = 0.3, 
+	["sectionId"] = 1, 
+	["hitPoints"] = HitPoints[game.Players.LocalPlayer.Character:FindFirstChild("Tool").ToolName.Value], 
+	["cooldown"] = 0.112, 
+	["cuttingClass"] = "Axe"
+}
+local Event = game:GetService("ReplicatedStorage").Interaction.RemoteProxy
+Event:FireServer(A_1, A_2)
+end
+local Ps = nil
+for i, v in pairs(game.Workspace.Properties:GetChildren()) do
+if v.Owner.Value == game.Players[_G.SelectedPlayer] then
+Ps = v.OriginSquare.Position + Vector3.new(0,30,0)
+end
+end
+for i,v in pairs(game.Workspace:GetDescendants()) do
+    if v:FindFirstChild("TreeClass") and v.TreeClass.Value == Wood and v.Name == "Model" then
+    _G.Teleport(v.WoodSection.Position.X,v.WoodSection.Position.Y,v.WoodSection.Position.Z)
+
+  local achmedtpsdasd = false;
+  Purchased = game.Workspace.LogModels.ChildAdded:connect(function(new)
+
+  if new:WaitForChild("Owner").Value == game.Players.LocalPlayer then
+    achmedtpsdasd = true;
+    local yes12312321 = false;
+    spawn(function()
+
+    while true do game:GetService("RunService").Heartbeat:Wait()
+      for i,v in pairs(game.Players:GetPlayers()) do
+        if yes12312321 == true then break end
+        if v == game.Players.LocalPlayer == false then
+          game:GetService("RunService").Stepped:wait()
+        end
+      end
+      if yes12312321 == true then break end
+    end
+
+    end)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = new.WoodSection.CFrame
+    wait()
+    for i=1,5 do wait()
+    Drag(new.WoodSection)
+    game.ReplicatedStorage.Interaction.ClientRequestOwnership:FireServer(new.WoodSection)
+  end
+  yes12312321 = true;
+  Purchased:Disconnect()
+  return;
+end
+end)
+
+repeat
+  wait(0.00000000000000000000001)
+  axe(v)
+until achmedtpsdasd == true
+
+for i,v in pairs(Workspace.LogModels:GetChildren()) do
+if v:FindFirstChild("Owner") and v.Owner.Value == game.Players.LocalPlayer and v.TreeClass.Value == Wood then
+game.ReplicatedStorage.Interaction.ClientIsDragging:FireServer(v)
+v:MoveTo(Ps)
+game.ReplicatedStorage.Interaction.ClientIsDragging:FireServer(v)
+v:MoveTo(Ps)
+game.ReplicatedStorage.Interaction.ClientIsDragging:FireServer(v)
+v:MoveTo(Ps)
+game.ReplicatedStorage.Interaction.ClientIsDragging:FireServer(v)
+end
+end
+
+Counter = Counter + 1;
+if Quantitys - Counter == 0 then
+print("Breaked")
+break
+end
+wait(0.2)
+end
+end
+wait(0.2)
+for i, v in pairs(game.Workspace.Properties:GetChildren()) do
+if v.Owner.Value == game.Players[_G.SelectedPlayer] then
+_G.Teleport(v.OriginSquare.Position.X, v.OriginSquare.Position.Y + 3.2, v.OriginSquare.Position.Z)
+end
+end
+end
+
+
+local Flying = false
+local SpeedGet = 0
+local SpeedFly = 2 -- Change this for speed
+local SPEED = SpeedGet
+local CONTROL = {F = 0, B = 0, L = 0, R = 0}
+local lCONTROL = {F = 0, B = 0, L = 0, R = 0}
+
+-- Function
+
+function Fly()
+local Plr = game:GetService("Players").LocalPlayer
+local Char = Plr.Character
+local Root = Char.HumanoidRootPart
+local Hum = Char.Humanoid
+
+local Mouse = Plr:GetMouse()
+Flying = true
+local BG = Instance.new('BodyGyro', Root)
+local BV = Instance.new('BodyVelocity', Root)
+BG.P = 9e4
+BG.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+BG.cframe = Root.CFrame
+BV.velocity = Vector3.new(0, 0.1, 0)
+BV.maxForce = Vector3.new(9e9, 9e9, 9e9)
+spawn(function()
+repeat wait()
+Hum.PlatformStand = true
+if CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0 then
+  SPEED = 50
+elseif not (CONTROL.L + CONTROL.R ~= 0 or CONTROL.F + CONTROL.B ~= 0) and SPEED ~= 0 then
+  SPEED = 0
+end
+if (CONTROL.L + CONTROL.R) ~= 0 or (CONTROL.F + CONTROL.B) ~= 0 then
+  BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (CONTROL.F + CONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(CONTROL.L + CONTROL.R, (CONTROL.F + CONTROL.B) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+  lCONTROL = {F = CONTROL.F, B = CONTROL.B, L = CONTROL.L, R = CONTROL.R}
+elseif (CONTROL.L + CONTROL.R) == 0 and (CONTROL.F + CONTROL.B) == 0 and SPEED ~= 0 then
+  BV.velocity = ((workspace.CurrentCamera.CoordinateFrame.lookVector * (lCONTROL.F + lCONTROL.B)) + ((workspace.CurrentCamera.CoordinateFrame * CFrame.new(lCONTROL.L + lCONTROL.R, (lCONTROL.F + lCONTROL.B) * 0.2, 0).p) - workspace.CurrentCamera.CoordinateFrame.p)) * SPEED
+else
+  BV.velocity = Vector3.new(0, 0.1, 0)
+end
+BG.cframe = workspace.CurrentCamera.CoordinateFrame
+until not Flying
+CONTROL = {F = 0, B = 0, L = 0, R = 0}
+lCONTROL = {F = 0, B = 0, L = 0, R = 0}
+SPEED = 0
+BG:destroy()
+BV:destroy()
+end)
+end
+
+-- Toggle Script
+
+
+-- Passive
+
+
+game:GetService("Players").LocalPlayer.Character.Humanoid.Died:Connect(function()
+
+
+
+Flying = false
+end)
+
+
+game:GetService("Players").LocalPlayer:GetMouse().KeyDown:connect(function(KEY)
+
+
+
+if KEY:lower() == 'w' then
+CONTROL.F = SpeedFly
+elseif KEY:lower() == 's' then
+CONTROL.B = -SpeedFly
+elseif KEY:lower() == 'a' then
+CONTROL.L = -SpeedFly
+elseif KEY:lower() == 'd' then
+CONTROL.R = SpeedFly
+end
+end)
+
+game:GetService("Players").LocalPlayer:GetMouse().KeyUp:connect(function(KEY)
+
+
+if KEY:lower() == 'w' then
+CONTROL.F = 0
+elseif KEY:lower() == 's' then
+CONTROL.B = 0
+elseif KEY:lower() == 'a' then
+CONTROL.L = 0
+elseif KEY:lower() == 'd' then
+CONTROL.R = 0
+end
+end)
+
+
+local vu = game:GetService("VirtualUser")
+game:GetService("Players").LocalPlayer.Idled:connect(function()
+vu:Button2Down(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+wait(1)
+vu:Button2Up(Vector2.new(0, 0), workspace.CurrentCamera.CFrame)
+end)
+
+
+Blood = library()
 
