@@ -1,5 +1,55 @@
 local blood = {}
 blood.gs = {}
+
+setmetatable(blood.gs, {
+  __index = function(_, service)
+  return game:GetService(service)
+  end,
+  __newindex = function(t, i)
+  t[i] = nil
+  return
+end
+})
+
+-- variables
+
+
+local TweenService = blood.gs["TweenService"]
+local CoreGui = blood.gs["CoreGui"]
+local RunService = blood.gs["RunService"]
+
+
+-- functions
+function destroygui()
+if CoreGui:FindFirstChild("bloodUI") then CoreGui:FindFirstChild("bloodUI"):Destroy() end
+end destroygui()
+
+function notify(title,text,duration)
+  game.StarterGui:SetCore("SendNotification", {
+    Title = title; -- the title (ofc)
+    Text = text; -- what the text says (ofc)
+    Icon = "rbxassetid://3883502641"; -- the image if u want.
+    Duration = duration; -- how long the notification should in secounds
+  })
+end
+
+function makebase(pos)
+  local Event = game:GetService("ReplicatedStorage").PropertyPurchasing.ClientExpandedProperty
+  Event:FireServer(base, pos)
+end
+
+function GetPos()
+  LocationX = game.Players.LocalPlayer.Character.HumanoidRootPart.Position.x + 7
+  LocationY = game.Players.LocalPlayer.Character.HumanoidRootPart.Position.y
+  LocationZ = game.Players.LocalPlayer.Character.HumanoidRootPart.Position.z
+
+  LocationCFrame = CFrame.new(LocationX, LocationY, LocationZ)
+  LocationVec = Vector3.new(LocationX, LocationY, LocationZ)
+
+
+end
+
+
 function library()
   destroygui()
   blood.theme = { -- light
@@ -380,6 +430,9 @@ function self2:Category(name)
     TopImage = "rbxassetid://967852042",
     ScrollBarImageTransparency = 1 --
   })
+
+
+
 
   category.L = blood:Create("Frame", {
     Name = "L",
@@ -1512,4 +1565,4 @@ return self2, bloodData
 end
 
 return blood
-end
+
