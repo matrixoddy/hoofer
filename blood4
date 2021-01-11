@@ -1,25 +1,5 @@
-local blood = {}
-blood.gs = {}
-
-setmetatable(blood.gs, {
-  __index = function(_, service)
-  return game:GetService(service)
-  end,
-  __newindex = function(t, i)
-  t[i] = nil
-  return
-end
-})
-
--- variables
 
 
-local TweenService = blood.gs["TweenService"]
-local CoreGui = blood.gs["CoreGui"]
-local RunService = blood.gs["RunService"]
-
-
--- functions
 
 local senv = getsenv(game.Players.LocalPlayer.PlayerGui.LoadSaveGUI.LoadSaveClient.LocalScript)
 hookfunction(senv.ban, function() end)
@@ -1566,4 +1546,3 @@ return self2, bloodData
 end
 
 return blood
-end
