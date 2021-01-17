@@ -929,8 +929,8 @@ function self2:Category(name)
 
             for _, value in next, options do
               local button = blood:Create("TextButton", {
-                BackgroundColor3 = Color3.new(1, 1, 1),
-                BackgroundTransparency = 1,
+                BackgroundColor3 = Color3.new(0, 0, 0),
+                BackgroundTransparency = 0,
                 Size = UDim2.new(1, 0, 0, 20),
                 ZIndex = 3,
                 Font = Enum.Font.Gotham,
