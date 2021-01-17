@@ -420,7 +420,7 @@ function self2:Category(name)
   category.container = blood:Create("ScrollingFrame", {
     Name = name,
     BackgroundTransparency = 1,
-    ScrollBarThickness = 8,
+    ScrollBarThickness = 7,
     BorderSizePixel = 0,
     Size = UDim2.new(1, 0, 1, 0),
     ZIndex = 2,
@@ -1054,7 +1054,7 @@ function self2:Category(name)
 
           cheat.background = blood:Create("ImageLabel", {
             Name = "Background",
-            BackgroundColor3 = Color3.new(0, 0, 0),
+            BackgroundColor3 = Color3.fromRGB(255, 0, 0),
             BackgroundTransparency = 0.5,
             Size = UDim2.new(1, 0, 1, 0),
             ZIndex = 2,
