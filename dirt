@@ -1068,7 +1068,7 @@
             
             minimize.Name = "Minimize"
             minimize.Parent = Title
-            minimize.Active = false
+            minimize.Active = true
             minimize.AnchorPoint = Vector2.new(1, 0.5)
             minimize.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
             minimize.BackgroundTransparency = 1.000
