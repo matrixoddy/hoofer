@@ -63,7 +63,7 @@
         Main.Position = UDim2.new(0, 15, 0, 15)
         Main.Size = UDim2.new(0, 150, 0, 206)
         Main.Image = "rbxassetid://3883502641"
-        Main.ImageColor3 = Color3.fromRGB(35, 35, 35)
+        --Main.ImageColor3 = Color3.fromRGB(35, 35, 35)
         Main.ScaleType = Enum.ScaleType.Slice
         Main.SliceCenter = Rect.new(100, 100, 100, 100)
         Main.SliceScale = 0.040
