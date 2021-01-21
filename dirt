@@ -58,7 +58,7 @@
 
         Main.Name = "Main"
         Main.Parent = ScreenGui
-        Main.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
+        Main.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
         Main.BackgroundTransparency = 1.000
         Main.Position = UDim2.new(0, 15, 0, 15)
         Main.Size = UDim2.new(0, 150, 0, 206)
