@@ -18,7 +18,7 @@ local Objects = {Background = {}, GrayContrast = {}, DarkContrast = {}, TextColo
 local Themes = {
 	Background = Color3.fromRGB(255, 0, 0),
 	GrayContrast = Color3.fromRGB(255, 0, 0),
-	DarkContrast = Color3.fromRGB(29, 29, 35),
+	DarkContrast = Color3.fromRGB(255, 0, 0),
 	TextColor = Color3.fromRGB( 0,1,0),
 	SectionContrast = Color3.fromRGB(39,38,46),
 	DropDownListContrast = Color3.fromRGB(34, 34, 41),
