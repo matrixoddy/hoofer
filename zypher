@@ -22,7 +22,7 @@ local Themes = {
 	TextColor = Color3.fromRGB(255,255,255),
 	SectionContrast = Color3.fromRGB(39,38,46),
 	DropDownListContrast = Color3.fromRGB(34, 34, 41),
-	CharcoalContrast = Color3.fromRGB(21,21,26),
+	CharcoalContrast = Color3.fromRGB(255,0,0),
 }
 
 function Library:Create(what, propri)
