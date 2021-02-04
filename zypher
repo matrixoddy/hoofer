@@ -16,7 +16,7 @@ local Library = {}
 local Objects = {Background = {}, GrayContrast = {}, DarkContrast = {}, TextColor = {}, SectionContrast = {}, DropDownListContrast = {}, CharcoalContrast = {}}
 
 local Themes = {
-	Background = Color3.fromRGB(46, 46, 54),
+	Background = Color3.fromRGB(255, 0, 0),
 	GrayContrast = Color3.fromRGB(39, 38, 46),
 	DarkContrast = Color3.fromRGB(29, 29, 35),
 	TextColor = Color3.fromRGB(255,255,255),
@@ -59,7 +59,7 @@ function Library:CreateMain(Options)
 		BackgroundColor3 = Themes.Background,
 		BorderSizePixel = 0,
 		Position = UDim2.new(0.5, -400, 0.5, -225),
-		Size = UDim2.new(0, 700, 0, 460),
+		Size = UDim2.new(0, 500, 0, 400),
 	})
 
 	table.insert(Objects.Background, Main.Motherframe)
