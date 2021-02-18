@@ -60,6 +60,6 @@ wait(2)
 	cursorprint = cursorprint + currentlettersize
 	startergap = Gap
 	cursorprint = cursorprint
-
+notify("Build", "Your Build Has Finished")
  = false
 end
