@@ -84,7 +84,7 @@ local themeStyles = {
         TextColor = Color3.fromRGB(255,255,255),
         ElementColor = Color3.fromRGB(74, 58, 84)
     },
-     = {
+    Ocean = {
         SchemeColor = Color3.fromRGB(86, 76, 251),
         Background = Color3.fromRGB(26, 32, 58),
         Header = Color3.fromRGB(38, 45, 71),
@@ -126,8 +126,8 @@ function Kavo.CreateLib(kavName, themeList)
         themeList = themeStyles.BloodTheme
     elseif themeList == "GrapeTheme" then
         themeList = themeStyles.GrapeTheme
-    elseif themeList == "" then
-        themeList = themeStyles.
+    elseif themeList == "Ocean" then
+        themeList = themeStyles.Ocean
     elseif themeList == "Midnight" then
         themeList = themeStyles.Midnight
     elseif themeList == "Sentinel" then
@@ -149,7 +149,7 @@ function Kavo.CreateLib(kavName, themeList)
     end
     themeList = themeList or {}
     local selectedTab 
-    kavName = kavName or ""
+    kavName = kavName or "Library"
     table.insert(Kavo, kavName)
     for i,v in pairs(game.Players.LocalPlayer.PlayerGui:GetChildren()) do
         if v:IsA("ScreenGui") and v.Name == kavName then
@@ -289,7 +289,7 @@ function Kavo.CreateLib(kavName, themeList)
     infoContainer.BorderColor3 = Color3.fromRGB(27, 42, 53)
     infoContainer.ClipsDescendants = true
     infoContainer.Position = UDim2.new(0.299047619, 0, 0.874213815, 0)
-    infoContainer.Size = UDim2.new(0, 368, 0, 66)
+    infoContainer.Size = UDim2.new(0, 368, 0, 33)
 
     local Tabs = {}
 
@@ -1150,22 +1150,22 @@ function Kavo.CreateLib(kavName, themeList)
                         game.TweenService:Create(val, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
                             TextTransparency = 0
                         }):Play()
-                        Value = .floor((((tonumber(maxvalue) - tonumber(minvalue)) / 149) * sliderDrag.AbsoluteSize.X) + tonumber(minvalue)) or 0
+                        Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 149) * sliderDrag.AbsoluteSize.X) + tonumber(minvalue)) or 0
                         pcall(function()
                             callback(Value)
                         end)
-                        sliderDrag:TweenSize(UDim2.new(0, .clamp(mouse.X - sliderDrag.AbsolutePosition.X, 0, 149), 0, 6), "InOut", "Linear", 0.05, true)
+                        sliderDrag:TweenSize(UDim2.new(0, math.clamp(mouse.X - sliderDrag.AbsolutePosition.X, 0, 149), 0, 6), "InOut", "Linear", 0.05, true)
                         moveconnection = mouse.Move:Connect(function()
                             val.Text = Value
-                            Value = .floor((((tonumber(maxvalue) - tonumber(minvalue)) / 149) * sliderDrag.AbsoluteSize.X) + tonumber(minvalue))
+                            Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 149) * sliderDrag.AbsoluteSize.X) + tonumber(minvalue))
                             pcall(function()
                                 callback(Value)
                             end)
-                            sliderDrag:TweenSize(UDim2.new(0, .clamp(mouse.X - sliderDrag.AbsolutePosition.X, 0, 149), 0, 6), "InOut", "Linear", 0.05, true)
+                            sliderDrag:TweenSize(UDim2.new(0, math.clamp(mouse.X - sliderDrag.AbsolutePosition.X, 0, 149), 0, 6), "InOut", "Linear", 0.05, true)
                         end)
                         releaseconnection = uis.InputEnded:Connect(function(Mouse)
                             if Mouse.UserInputType == Enum.UserInputType.MouseButton1 then
-                                Value = .floor((((tonumber(maxvalue) - tonumber(minvalue)) / 149) * sliderDrag.AbsoluteSize.X) + tonumber(minvalue))
+                                Value = math.floor((((tonumber(maxvalue) - tonumber(minvalue)) / 149) * sliderDrag.AbsoluteSize.X) + tonumber(minvalue))
                                 pcall(function()
                                     callback(Value)
                                 end)
@@ -1173,7 +1173,7 @@ function Kavo.CreateLib(kavName, themeList)
                                 game.TweenService:Create(val, TweenInfo.new(0.1, Enum.EasingStyle.Linear, Enum.EasingDirection.In), {
                                     TextTransparency = 1
                                 }):Play()
-                                sliderDrag:TweenSize(UDim2.new(0, .clamp(mouse.X - sliderDrag.AbsolutePosition.X, 0, 149), 0, 6), "InOut", "Linear", 0.05, true)
+                                sliderDrag:TweenSize(UDim2.new(0, math.clamp(mouse.X - sliderDrag.AbsolutePosition.X, 0, 149), 0, 6), "InOut", "Linear", 0.05, true)
                                 moveconnection:Disconnect()
                                 releaseconnection:Disconnect()
                             end
