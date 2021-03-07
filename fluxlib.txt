@@ -129,8 +129,8 @@ function Flux:Window(text, bottom,mainclr,toclose)
 	GlowTabHolder.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
 	GlowTabHolder.BackgroundTransparency = 1.000
 	GlowTabHolder.BorderSizePixel = 0
-	GlowTabHolder.Position = UDim2.new(0, -10, 0, -10)
-	GlowTabHolder.Size = UDim2.new(1, 30, 1, 25)
+	GlowTabHolder.Position = UDim2.new(0, -15, 0, -15)
+	GlowTabHolder.Size = UDim2.new(1, 30, 1, 30)
 	GlowTabHolder.ZIndex = 0
 	GlowTabHolder.Image = "rbxassetid://4996891970"
 	GlowTabHolder.ImageColor3 = Color3.fromRGB(15, 15, 15)
@@ -406,7 +406,7 @@ function Flux:Window(text, bottom,mainclr,toclose)
 		Tab.Parent = TabHold
 		Tab.BackgroundColor3 = PresetColor
 		Tab.BorderSizePixel = 0
-		Tab.Size = UDim2.new(0, 205, 0, 20)
+		Tab.Size = UDim2.new(0, 205, 0, 40)
 		Tab.AutoButtonColor = false
 		Tab.Font = Enum.Font.SourceSans
 		Tab.Text = ""
@@ -1137,7 +1137,7 @@ function Flux:Window(text, bottom,mainclr,toclose)
 			Value.Position = UDim2.new(2.27693367, 0, 0, 0)
 			Value.Size = UDim2.new(0, 113, 0, 41)
 			Value.Font = Enum.Font.Gotham
-			Value.Text = tostring(start and .floor((start / max) * (max - min) + min) or 0)
+			Value.Text = tostring(start and math.floor((start / max) * (max - min) + min) or 0)
 			Value.TextColor3 = Color3.fromRGB(255, 255, 255)
 			Value.TextSize = 15.000
 			Value.TextTransparency = 0.300
@@ -1249,21 +1249,21 @@ function Flux:Window(text, bottom,mainclr,toclose)
 				local function move(input)
 					local pos =
 						UDim2.new(
-							.clamp((input.Position.X - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1),
+							math.clamp((input.Position.X - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1),
 							-6,
 						-1.30499995,
 							0
 						)
 					local pos1 =
 						UDim2.new(
-							.clamp((input.Position.X - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1),
+							math.clamp((input.Position.X - SlideFrame.AbsolutePosition.X) / SlideFrame.AbsoluteSize.X, 0, 1),
 							0,
 							0,
 							3
 						)
 					CurrentValueFrame:TweenSize(pos1, "Out", "Sine", 0.1, true)
 					SlideCircle:TweenPosition(pos, "Out", "Sine", 0.1, true)
-					local value = .floor(((pos.X.Scale * max) / max) * (max - min) + min)
+					local value = math.floor(((pos.X.Scale * max) / max) * (max - min) + min)
 					Value.Text = tostring(value)
 					pcall(callback, value)
 				end
@@ -1292,7 +1292,7 @@ function Flux:Window(text, bottom,mainclr,toclose)
 			function SliderFunc:Change(tochange)
 				CurrentValueFrame.Size = UDim2.new((tochange or 0) / max, 0, 0, 3)
 				SlideCircle.Position = UDim2.new((tochange or 0)/max, -6,-1.30499995, 0)
-				Value.Text = tostring(tochange and .floor((tochange / max) * (max - min) + min) or 0)
+				Value.Text = tostring(tochange and math.floor((tochange / max) * (max - min) + min) or 0)
 				pcall(callback,tochange)
 			end
 			return SliderFunc
@@ -2096,14 +2096,14 @@ function Flux:Window(text, bottom,mainclr,toclose)
 
 			ColorH =
 				1 -
-				(.clamp(HueSelection.AbsolutePosition.Y - Hue.AbsolutePosition.Y, 0, Hue.AbsoluteSize.Y) /
+				(math.clamp(HueSelection.AbsolutePosition.Y - Hue.AbsolutePosition.Y, 0, Hue.AbsoluteSize.Y) /
 					Hue.AbsoluteSize.Y)
 			ColorS =
-				(.clamp(ColorSelection.AbsolutePosition.X - Color.AbsolutePosition.X, 0, Color.AbsoluteSize.X) /
+				(math.clamp(ColorSelection.AbsolutePosition.X - Color.AbsolutePosition.X, 0, Color.AbsoluteSize.X) /
 					Color.AbsoluteSize.X)
 			ColorV =
 				1 -
-				(.clamp(ColorSelection.AbsolutePosition.Y - Color.AbsolutePosition.Y, 0, Color.AbsoluteSize.Y) /
+				(math.clamp(ColorSelection.AbsolutePosition.Y - Color.AbsolutePosition.Y, 0, Color.AbsoluteSize.Y) /
 					Color.AbsoluteSize.Y)
 
 			BoxColor.BackgroundColor3 = preset
@@ -2125,10 +2125,10 @@ function Flux:Window(text, bottom,mainclr,toclose)
 							RunService.RenderStepped:Connect(
 								function()
 								local ColorX =
-									(.clamp(Mouse.X - Color.AbsolutePosition.X, 0, Color.AbsoluteSize.X) /
+									(math.clamp(Mouse.X - Color.AbsolutePosition.X, 0, Color.AbsoluteSize.X) /
 										Color.AbsoluteSize.X)
 								local ColorY =
-									(.clamp(Mouse.Y - Color.AbsolutePosition.Y, 0, Color.AbsoluteSize.Y) /
+									(math.clamp(Mouse.Y - Color.AbsolutePosition.Y, 0, Color.AbsoluteSize.Y) /
 										Color.AbsoluteSize.Y)
 
 								ColorSelection.Position = UDim2.new(ColorX, 0, ColorY, 0)
@@ -2167,7 +2167,7 @@ function Flux:Window(text, bottom,mainclr,toclose)
 							RunService.RenderStepped:Connect(
 								function()
 								local HueY =
-									(.clamp(Mouse.Y - Hue.AbsolutePosition.Y, 0, Hue.AbsoluteSize.Y) /
+									(math.clamp(Mouse.Y - Hue.AbsolutePosition.Y, 0, Hue.AbsoluteSize.Y) /
 										Hue.AbsoluteSize.Y)
 
 								HueSelection.Position = UDim2.new(0.48, 0, HueY, 0)
