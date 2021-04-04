@@ -1,6 +1,6 @@
 --oddy circal
 
-local Player = _G.Base
+local Player = "LocalPlayer"
 
 local Remote = game.ReplicatedStorage.PlaceStructure.ClientPlacedStructure
 local Plr = game:GetService("Players").LocalPlayer
