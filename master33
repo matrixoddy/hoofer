@@ -90,12 +90,12 @@ function library:Window(name)
     UiWindow.BackgroundColor3 = Color3.fromRGB(47, 49, 54)
     UiWindow.BorderColor3 = Color3.fromRGB(47, 49, 54)
     UiWindow.Position = UDim2.new(0, xOffset, 0, 20)
-    UiWindow.Size = UDim2.new(0, 207, 0, 33)
+    UiWindow.Size = UDim2.new(0, 150, 0, 15)
     UiWindow.ZIndex = 4 + zindex
     UiWindow.Active = true
     Dragify(UiWindow)
 
-    xOffset = xOffset + 230
+    xOffset = xOffset + 155
 
     local Header = Instance.new("Frame")
     Header.Name = "Header"
