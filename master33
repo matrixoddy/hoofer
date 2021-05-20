@@ -95,7 +95,7 @@ function library:Window(name)
     UiWindow.Active = false
     Dragify(UiWindow)
 
-    xOffset = xOffset + 230
+    yOffset = yOffset + 30
 
     local Header = Instance.new("Frame")
     Header.Name = "Header"
