@@ -77,7 +77,7 @@ TurtleUiLib.Name = "TurtleUiLib"
 
 protect_gui(TurtleUiLib)
 
-local xOffset = 20
+local xOffset = 100
 
 function library:Window(name) 
     windowCount = windowCount + 1
