@@ -138,8 +138,8 @@ function library:Window(name)
 
     Window.Name = "Window"
     Window.Parent = Header
-    Window.BackgroundColor3 = Color3.fromRGB(0, 151, 230)
-    Window.BorderColor3 = Color3.fromRGB(0, 151, 230)
+    Window.BackgroundColor3 = Color3.fromRGB(32, 34, 37)
+    Window.BorderColor3 = Color3.fromRGB(32, 34, 37)
     Window.Position = UDim2.new(0, 0, 0, 0)
     Window.Size = UDim2.new(0, 207, 0, 33)
     Window.ZIndex = 1 + zindex
