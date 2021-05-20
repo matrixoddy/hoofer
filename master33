@@ -87,8 +87,8 @@ function library:Window(name)
 
     UiWindow.Name = "UiWindow"
     UiWindow.Parent = TurtleUiLib
-    UiWindow.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
-    UiWindow.BorderColor3 = Color3.fromRGB(255, 0, 0)
+    UiWindow.BackgroundColor3 = Color3.fromRGB(47, 49, 54)
+    UiWindow.BorderColor3 = Color3.fromRGB(47, 49, 54)
     UiWindow.Position = UDim2.new(0, xOffset, 0, 20)
     UiWindow.Size = UDim2.new(0, 207, 0, 33)
     UiWindow.ZIndex = 4 + zindex
@@ -100,7 +100,7 @@ function library:Window(name)
     local Header = Instance.new("Frame")
     Header.Name = "Header"
     Header.Parent = UiWindow
-    Header.BackgroundColor3 = Color3.fromRGB(47, 49, 54)
+    Header.BackgroundColor3 = Color3.fromRGB(114, 137, 228)
     Header.BorderColor3 = Color3.fromRGB(0, 168, 255)
     Header.Position = UDim2.new(0, 0, -0.0202544238, 0)
     Header.Size = UDim2.new(0, 207, 0, 26)
@@ -109,7 +109,7 @@ function library:Window(name)
     local HeaderText = Instance.new("TextLabel")
     HeaderText.Name = "HeaderText"
     HeaderText.Parent = Header
-    HeaderText.BackgroundColor3 = Color3.fromRGB(255, 0, 0)
+    HeaderText.BackgroundColor3 = Color3.fromRGB(114, 137, 228)
     HeaderText.BackgroundTransparency = 1.000
     HeaderText.Position = UDim2.new(0, 0, -0.0020698905, 0)
     HeaderText.Size = UDim2.new(0, 206, 0, 33)
@@ -123,7 +123,7 @@ function library:Window(name)
     local Window = Instance.new("Frame")
     Minimise.Name = "Minimise"
     Minimise.Parent = Header
-    Minimise.BackgroundColor3 = Color3.fromRGB(47, 49, 54)
+    Minimise.BackgroundColor3 = Color3.fromRGB(114, 137, 228)
     Minimise.BorderColor3 = Color3.fromRGB(0, 168, 255)
     Minimise.Position = UDim2.new(0, 185, 0, 2)
     Minimise.Size = UDim2.new(0, 22, 0, 22)
