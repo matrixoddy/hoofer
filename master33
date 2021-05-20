@@ -77,7 +77,7 @@ TurtleUiLib.Name = "TurtleUiLib"
 
 protect_gui(TurtleUiLib)
 
-xOffset = xOffset + 225
+local xOffset = 20
 
 function library:Window(name) 
     windowCount = windowCount + 1
@@ -95,7 +95,7 @@ function library:Window(name)
     UiWindow.Active = false
     Dragify(UiWindow)
 
-    xOffset = xOffset + 30
+    xOffset = xOffset + 220
 
     local Header = Instance.new("Frame")
     Header.Name = "Header"
