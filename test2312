@@ -80,7 +80,7 @@ function CreateMain(title)
 		Tab.Name = text
 		Tab.Parent = Container
 		Tab.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-		Tab.BackgroundTransparency = 1.000
+		Tab.BackgroundTransparency = 0
 		Tab.Size = UDim2.new(0, 193, 0, 24)
 		Tab.Font = Enum.Font.JosefinSans
 		Tab.Text = " "..text
@@ -142,7 +142,7 @@ function CreateMain(title)
 			Button.Name = buttonText
 			Button.Parent = parent.TabContainer
 			Button.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-			Button.BackgroundTransparency = 1.000
+			Button.BackgroundTransparency = 0
 			Button.Size = UDim2.new(0, 193, 0, 24)
 			Button.Font = Enum.Font.JosefinSans
 			Button.Text = " "..buttonText
@@ -184,7 +184,7 @@ function CreateMain(title)
 			Label.Name = labelText
 			Label.Parent = parent.TabContainer
 			Label.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-			Label.BackgroundTransparency = 1.000
+			Label.BackgroundTransparency = 0
 			Label.Size = UDim2.new(0, 193, 0, 24)
 			Label.Font = Enum.Font.JosefinSans
 			Label.Text = " "..labelText
@@ -206,7 +206,7 @@ function CreateMain(title)
 			Toggle.Name = "Toggled"
 			Toggle.Value = false
 			Button.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-			Button.BackgroundTransparency = 1.000
+			Button.BackgroundTransparency = 0
 			Button.Size = UDim2.new(0, 193, 0, 24)
 			Button.Font = Enum.Font.JosefinSans
 			Button.Text = " "..buttonText
@@ -254,7 +254,7 @@ function CreateMain(title)
 			SideDrop.Name = dropText
 			SideDrop.Parent = parent.TabContainer
 			SideDrop.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-			SideDrop.BackgroundTransparency = 1.000
+			SideDrop.BackgroundTransparency = 0
 			SideDrop.Size = UDim2.new(0, 193, 0, 24)
 			SideDrop.Font = Enum.Font.JosefinSans
 			SideDrop.Text = " "..dropText
@@ -297,7 +297,7 @@ function CreateMain(title)
 			DropContainer.Name = "DropContainer"
 			DropContainer.Parent = SideDrop
 			DropContainer.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-			DropContainer.BackgroundTransparency = 0.7
+			DropContainer.BackgroundTransparency = 0
 			DropContainer.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			DropContainer.BorderSizePixel = 4
 			DropContainer.Position = UDim2.new(1.055, 0, 0, 0)
