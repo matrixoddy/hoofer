@@ -339,8 +339,8 @@ function CreateMain(title)
 			SideDrop.Name = dropText
 			SideDrop.Parent = parent.TabContainer
 			SideDrop.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-			SideDrop.BackgroundTransparency = 1.000
-			SideDrop.Size = UDim2.new(0, 193, 0, 24)
+			SideDrop.BackgroundTransparency = 0
+			SideDrop.Size = UDim2.new(0, 193, 0, 240)
 			SideDrop.Font = Enum.Font.JosefinSans
 			SideDrop.Text = " "..dropText
 			SideDrop.TextColor3 = Color3.fromRGB(255, 255, 255)
@@ -382,7 +382,7 @@ function CreateMain(title)
 			DropContainer.Name = "DropContainer"
 			DropContainer.Parent = SideDrop
 			DropContainer.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-			DropContainer.BackgroundTransparency = 0.7
+			DropContainer.BackgroundTransparency = 0
 			DropContainer.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			DropContainer.BorderSizePixel = 4
 			DropContainer.Position = UDim2.new(1.055, 0, 0, 0)
@@ -456,7 +456,7 @@ function CreateMain(title)
 			Side.Name = "Side"
 			Side.Parent = TextBox
 			Side.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-			Side.BackgroundTransparency = 0.7
+			Side.BackgroundTransparency = 0
 			Side.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			Side.BorderSizePixel = 4
 			Side.Position = UDim2.new(1.055, 0, 0, 0)
