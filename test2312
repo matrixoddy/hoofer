@@ -24,7 +24,7 @@ function CreateMain(title)
 	Top.BackgroundTransparency = 0
 	Top.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Top.BorderSizePixel = 4
-	Top.Position = UDim2.new(0, 15, 0, 50)
+	Top.Position = UDim2.new(0, 15, 0, 200)
 	Top.Size = UDim2.new(0, 193, 0, 27)
 
 	Title.Name = "Title"
