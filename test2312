@@ -20,7 +20,7 @@ function CreateMain(title)
 	Top.Name = "Top"
 	Top.Parent = Rodus
 	Top.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-	Top.BackgroundTransparency = 0
+	Top.BackgroundTransparency = 1.000
 	Top.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Top.BorderSizePixel = 4
 	Top.Position = UDim2.new(0, 15, 0, 100)
@@ -29,7 +29,7 @@ function CreateMain(title)
 	Title.Name = "Title"
 	Title.Parent = Top
 	Title.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-	Title.BackgroundTransparency = 0
+	Title.BackgroundTransparency = 1.000
 	Title.BorderSizePixel = 0
 	Title.Size = UDim2.new(0, 193, 0, 27)
 	Title.Font = Enum.Font.Gotham
@@ -41,7 +41,7 @@ function CreateMain(title)
 	Container.Name = "Container"
 	Container.Parent = Top
 	Container.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-	Container.BackgroundTransparency = 0
+	Container.BackgroundTransparency = 1.000
 	Container.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Container.BorderSizePixel = 4
 	Container.Position = UDim2.new(0, 0, 1.29629624, 0)
@@ -107,7 +107,7 @@ function CreateMain(title)
 		TabContainer.Name = "TabContainer"
 		TabContainer.Parent = Tab
 		TabContainer.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-		TabContainer.BackgroundTransparency = 0.7
+		TabContainer.BackgroundTransparency = 1.000
 		TabContainer.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		TabContainer.BorderSizePixel = 4
 		TabContainer.Position = UDim2.new(1.0569948, 0, 0, 0)
