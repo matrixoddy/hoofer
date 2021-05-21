@@ -422,7 +422,7 @@ function CreateMain(title)
 		
 
 
-function CreateSlider(text, min, max, default, callback)
+function CreateSlider(parent, text, min, max, default, callback)
         local text = text or "Slider"
         local min = min or 1
         local max = max or 100
