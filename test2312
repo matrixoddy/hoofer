@@ -29,7 +29,7 @@ function CreateMain(title)
 	Title.Name = "Title"
 	Title.Parent = Top
 	Title.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-	Title.BackgroundTransparency = 0.7
+	Title.BackgroundTransparency = 0
 	Title.BorderSizePixel = 0
 	Title.Size = UDim2.new(0, 193, 0, 27)
 	Title.Font = Enum.Font.JosefinSans
@@ -41,7 +41,7 @@ function CreateMain(title)
 	Container.Name = "Container"
 	Container.Parent = Top
 	Container.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-	Container.BackgroundTransparency = 0.7
+	Container.BackgroundTransparency = 0
 	Container.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Container.BorderSizePixel = 4
 	Container.Position = UDim2.new(0, 0, 1.29629624, 0)
