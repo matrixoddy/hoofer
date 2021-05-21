@@ -340,7 +340,7 @@ function CreateMain(title)
 			SideDrop.Parent = parent.TabContainer
 			SideDrop.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
 			SideDrop.BackgroundTransparency = 0
-			SideDrop.Size = UDim2.new(0, 193, 0, 240)
+			SideDrop.Size = UDim2.new(0, 193, 0, 24)
 			SideDrop.Font = Enum.Font.JosefinSans
 			SideDrop.Text = " "..dropText
 			SideDrop.TextColor3 = Color3.fromRGB(255, 255, 255)
