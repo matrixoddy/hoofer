@@ -397,7 +397,7 @@ function CreateMain(title)
 				Button.Name = v
 				Button.Parent = SideDrop.DropContainer
 				Button.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-				Button.BackgroundTransparency = 1.000
+				Button.BackgroundTransparency = 0
 				Button.Size = UDim2.new(0, 193, 0, 24)
 				Button.Font = Enum.Font.JosefinSans
 				Button.Text = " "..v
@@ -426,7 +426,7 @@ function CreateMain(title)
 			TextBox.Name = buttonText
 			TextBox.Parent = parent.TabContainer
 			TextBox.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-			TextBox.BackgroundTransparency = 1.000
+			TextBox.BackgroundTransparency = 0
 			TextBox.Size = UDim2.new(0, 193, 0, 24)
 			TextBox.Font = Enum.Font.JosefinSans
 			TextBox.Text = " "..buttonText
@@ -493,7 +493,7 @@ function CreateMain(title)
 			Box.Name = "Box"
 			Box.Parent = Side
 			Box.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			Box.BackgroundTransparency = 1.000
+			Box.BackgroundTransparency = 0
 			Box.Size = UDim2.new(0, 193, 0, 24)
 			Box.Font = Enum.Font.JosefinSans
 			Box.Text = ""
