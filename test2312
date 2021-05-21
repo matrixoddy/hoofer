@@ -1,4 +1,3 @@
-
 function CreateMain(title)
 	local destroyIfExist = game.CoreGui:GetChildren()
 	for index, destroyIfExist in pairs(destroyIfExist) do
@@ -21,16 +20,16 @@ function CreateMain(title)
 	Top.Name = "Top"
 	Top.Parent = Rodus
 	Top.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-	Top.BackgroundTransparency = 0
+	Top.BackgroundTransparency = 0.7
 	Top.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Top.BorderSizePixel = 4
-	Top.Position = UDim2.new(0, 15, 0, 200)
+	Top.Position = UDim2.new(0, 15, 0, 15)
 	Top.Size = UDim2.new(0, 193, 0, 27)
 
 	Title.Name = "Title"
 	Title.Parent = Top
 	Title.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-	Title.BackgroundTransparency = 0
+	Title.BackgroundTransparency = 0.7
 	Title.BorderSizePixel = 0
 	Title.Size = UDim2.new(0, 193, 0, 27)
 	Title.Font = Enum.Font.JosefinSans
@@ -42,7 +41,7 @@ function CreateMain(title)
 	Container.Name = "Container"
 	Container.Parent = Top
 	Container.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-	Container.BackgroundTransparency = 0
+	Container.BackgroundTransparency = 0.7
 	Container.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Container.BorderSizePixel = 4
 	Container.Position = UDim2.new(0, 0, 1.29629624, 0)
@@ -54,7 +53,7 @@ function CreateMain(title)
 	Minimize.Name = "Minimize"
 	Minimize.Parent = Top
 	Minimize.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-	Minimize.BackgroundTransparency = 0
+	Minimize.BackgroundTransparency = 1.000
 	Minimize.Position = UDim2.new(0.906735778, 0, 0.185185179, 0)
 	Minimize.Size = UDim2.new(0, 18, 0, 17)
 	Minimize.Font = Enum.Font.SourceSans
@@ -81,7 +80,7 @@ function CreateMain(title)
 		Tab.Name = text
 		Tab.Parent = Container
 		Tab.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-		Tab.BackgroundTransparency = 0
+		Tab.BackgroundTransparency = 1.000
 		Tab.Size = UDim2.new(0, 193, 0, 24)
 		Tab.Font = Enum.Font.JosefinSans
 		Tab.Text = " "..text
@@ -92,7 +91,7 @@ function CreateMain(title)
 		Arrow.Name = "Arrow"
 		Arrow.Parent = Tab
 		Arrow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-		Arrow.BackgroundTransparency = 0
+		Arrow.BackgroundTransparency = 1.000
 		Arrow.Position = UDim2.new(0.907, 0, 0, 0)
 		Arrow.Size = UDim2.new(0, 18, 0, 21)
 		Arrow.Font = Enum.Font.SourceSans
@@ -108,7 +107,7 @@ function CreateMain(title)
 		TabContainer.Name = "TabContainer"
 		TabContainer.Parent = Tab
 		TabContainer.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-		TabContainer.BackgroundTransparency = 0
+		TabContainer.BackgroundTransparency = 0.7
 		TabContainer.BorderColor3 = Color3.fromRGB(0, 0, 0)
 		TabContainer.BorderSizePixel = 4
 		TabContainer.Position = UDim2.new(1.0569948, 0, 0, 0)
@@ -143,7 +142,7 @@ function CreateMain(title)
 			Button.Name = buttonText
 			Button.Parent = parent.TabContainer
 			Button.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-			Button.BackgroundTransparency = 0
+			Button.BackgroundTransparency = 1.000
 			Button.Size = UDim2.new(0, 193, 0, 24)
 			Button.Font = Enum.Font.JosefinSans
 			Button.Text = " "..buttonText
@@ -166,7 +165,7 @@ function CreateMain(title)
 			Note.Name = "Note"
 			Note.Parent = Button
 			Note.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			Note.BackgroundTransparency = 0
+			Note.BackgroundTransparency = 1.000
 			Note.Position = UDim2.new(1.04145074, 0, 0, 0)
 			Note.Size = UDim2.new(0, 193, 0, 24)
 			Note.Font = Enum.Font.JosefinSans
@@ -185,7 +184,7 @@ function CreateMain(title)
 			Label.Name = labelText
 			Label.Parent = parent.TabContainer
 			Label.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-			Label.BackgroundTransparency = 0
+			Label.BackgroundTransparency = 1.000
 			Label.Size = UDim2.new(0, 193, 0, 24)
 			Label.Font = Enum.Font.JosefinSans
 			Label.Text = " "..labelText
@@ -207,7 +206,7 @@ function CreateMain(title)
 			Toggle.Name = "Toggled"
 			Toggle.Value = false
 			Button.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-			Button.BackgroundTransparency = 0
+			Button.BackgroundTransparency = 1.000
 			Button.Size = UDim2.new(0, 193, 0, 24)
 			Button.Font = Enum.Font.JosefinSans
 			Button.Text = " "..buttonText
@@ -232,7 +231,7 @@ function CreateMain(title)
 			Note.Name = "Note"
 			Note.Parent = Button
 			Note.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			Note.BackgroundTransparency = 0
+			Note.BackgroundTransparency = 1.000
 			Note.Position = UDim2.new(1.04145074, 0, 0, 0)
 			Note.Size = UDim2.new(0, 193, 0, 24)
 			Note.Font = Enum.Font.JosefinSans
@@ -255,7 +254,7 @@ function CreateMain(title)
 			SideDrop.Name = dropText
 			SideDrop.Parent = parent.TabContainer
 			SideDrop.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-			SideDrop.BackgroundTransparency = 0
+			SideDrop.BackgroundTransparency = 1.000
 			SideDrop.Size = UDim2.new(0, 193, 0, 24)
 			SideDrop.Font = Enum.Font.JosefinSans
 			SideDrop.Text = " "..dropText
@@ -285,7 +284,7 @@ function CreateMain(title)
 			Arrow.Name = "Arrow"
 			Arrow.Parent = SideDrop
 			Arrow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			Arrow.BackgroundTransparency = 0
+			Arrow.BackgroundTransparency = 1.000
 			Arrow.Position = UDim2.new(0.906735778, 0, 0, 0)
 			Arrow.Size = UDim2.new(0, 18, 0, 21)
 			Arrow.Font = Enum.Font.SourceSans
@@ -298,7 +297,7 @@ function CreateMain(title)
 			DropContainer.Name = "DropContainer"
 			DropContainer.Parent = SideDrop
 			DropContainer.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-			DropContainer.BackgroundTransparency = 1.0
+			DropContainer.BackgroundTransparency = 0.7
 			DropContainer.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			DropContainer.BorderSizePixel = 4
 			DropContainer.Position = UDim2.new(1.055, 0, 0, 0)
@@ -313,7 +312,7 @@ function CreateMain(title)
 				Button.Name = v
 				Button.Parent = SideDrop.DropContainer
 				Button.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-				Button.BackgroundTransparency = 0
+				Button.BackgroundTransparency = 1.000
 				Button.Size = UDim2.new(0, 193, 0, 24)
 				Button.Font = Enum.Font.JosefinSans
 				Button.Text = " "..v
@@ -340,7 +339,7 @@ function CreateMain(title)
 			SideDrop.Name = dropText
 			SideDrop.Parent = parent.TabContainer
 			SideDrop.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-			SideDrop.BackgroundTransparency = 0
+			SideDrop.BackgroundTransparency = 1.000
 			SideDrop.Size = UDim2.new(0, 193, 0, 24)
 			SideDrop.Font = Enum.Font.JosefinSans
 			SideDrop.Text = " "..dropText
@@ -370,7 +369,7 @@ function CreateMain(title)
 			Arrow.Name = "Arrow"
 			Arrow.Parent = SideDrop
 			Arrow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			Arrow.BackgroundTransparency = 0
+			Arrow.BackgroundTransparency = 1.000
 			Arrow.Position = UDim2.new(0.906735778, 0, 0, 0)
 			Arrow.Size = UDim2.new(0, 18, 0, 21)
 			Arrow.Font = Enum.Font.SourceSans
@@ -383,7 +382,7 @@ function CreateMain(title)
 			DropContainer.Name = "DropContainer"
 			DropContainer.Parent = SideDrop
 			DropContainer.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-			DropContainer.BackgroundTransparency = 0
+			DropContainer.BackgroundTransparency = 0.7
 			DropContainer.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			DropContainer.BorderSizePixel = 4
 			DropContainer.Position = UDim2.new(1.055, 0, 0, 0)
@@ -398,7 +397,7 @@ function CreateMain(title)
 				Button.Name = v
 				Button.Parent = SideDrop.DropContainer
 				Button.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-				Button.BackgroundTransparency = 0
+				Button.BackgroundTransparency = 1.000
 				Button.Size = UDim2.new(0, 193, 0, 24)
 				Button.Font = Enum.Font.JosefinSans
 				Button.Text = " "..v
@@ -427,7 +426,7 @@ function CreateMain(title)
 			TextBox.Name = buttonText
 			TextBox.Parent = parent.TabContainer
 			TextBox.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-			TextBox.BackgroundTransparency = 0
+			TextBox.BackgroundTransparency = 1.000
 			TextBox.Size = UDim2.new(0, 193, 0, 24)
 			TextBox.Font = Enum.Font.JosefinSans
 			TextBox.Text = " "..buttonText
@@ -444,7 +443,7 @@ function CreateMain(title)
 			Arrow.Name = "Arrow"
 			Arrow.Parent = TextBox
 			Arrow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			Arrow.BackgroundTransparency = 0
+			Arrow.BackgroundTransparency = 1.000
 			Arrow.Position = UDim2.new(0.906735778, 0, 0, 0)
 			Arrow.Size = UDim2.new(0, 18, 0, 21)
 			Arrow.Font = Enum.Font.SourceSans
@@ -457,7 +456,7 @@ function CreateMain(title)
 			Side.Name = "Side"
 			Side.Parent = TextBox
 			Side.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-			Side.BackgroundTransparency = 0
+			Side.BackgroundTransparency = 0.7
 			Side.BorderColor3 = Color3.fromRGB(0, 0, 0)
 			Side.BorderSizePixel = 4
 			Side.Position = UDim2.new(1.055, 0, 0, 0)
@@ -473,7 +472,7 @@ function CreateMain(title)
 			Hover.Name = "Hover"
 			Hover.Parent = TextBox
 			Hover.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			Hover.BackgroundTransparency = 0
+			Hover.BackgroundTransparency = 1.000
 			Hover.Size = UDim2.new(0, 209, 0, 32)
 			Hover.MouseEnter:Connect(function()
 				local allTabs = game.CoreGui[tostring(title)].Top.Container:GetDescendants()
@@ -494,7 +493,7 @@ function CreateMain(title)
 			Box.Name = "Box"
 			Box.Parent = Side
 			Box.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-			Box.BackgroundTransparency = 0
+			Box.BackgroundTransparency = 1.000
 			Box.Size = UDim2.new(0, 193, 0, 24)
 			Box.Font = Enum.Font.JosefinSans
 			Box.Text = ""
