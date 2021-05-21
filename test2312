@@ -20,7 +20,7 @@ function CreateMain(title)
 	Top.Name = "Top"
 	Top.Parent = Rodus
 	Top.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-	Top.BackgroundTransparency = 0.7
+	Top.BackgroundTransparency = 1
 	Top.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Top.BorderSizePixel = 4
 	Top.Position = UDim2.new(0, 15, 0, 50)
@@ -41,7 +41,7 @@ function CreateMain(title)
 	Container.Name = "Container"
 	Container.Parent = Top
 	Container.BackgroundColor3 = Color3.fromRGB(0, 0, 0)
-	Container.BackgroundTransparency = 0.7
+	Container.BackgroundTransparency = 1
 	Container.BorderColor3 = Color3.fromRGB(0, 0, 0)
 	Container.BorderSizePixel = 4
 	Container.Position = UDim2.new(0, 0, 1.29629624, 0)
@@ -123,8 +123,8 @@ function CreateMain(title)
 					end
 				end
 				TabContainer.Visible = true
-				Tab.TextColor3 = Color3.new(0, 255, 0)
-				Tab.Arrow.TextColor3 = Color3.new(0, 255, 0)
+				Tab.TextColor3 = Color3.fromRGB(255, 0, 0)
+				Tab.Arrow.TextColor3 = Color3.fromRGB(255, 0, 0)
 			else 
 				TabContainer.Visible = false
 				Tab.TextColor3 = Color3.new(255, 255, 255)
@@ -156,7 +156,7 @@ function CreateMain(title)
 				Button.Note.Visible = false
 			end)
 			Button.MouseButton1Down:Connect(function()
-				Button.TextColor3 = Color3.new(0, 255, 0)
+				Button.TextColor3 = Color3.fromRGB(255, 0, 0)
 				wait(0.05)
 				Button.TextColor3 = Color3.new(255, 255, 255)
 				pcall(callback)
@@ -222,9 +222,9 @@ function CreateMain(title)
 			Button.MouseButton1Down:Connect(function()
 				Toggle.Value = not Toggle.Value
 				toggled = Toggle.Value
-				if Button.TextColor3 == Color3.new(0, 255, 0) then
+				if Button.TextColor3 == Color3.fromRGB(255, 0, 0) then
 					Button.TextColor3 = Color3.new(255, 255, 255)
-				else Button.TextColor3 = Color3.new(0, 255, 0) 
+				else Button.TextColor3 = Color3.fromRGB(255, 0, 0) 
 				end
 				pcall(callback)
 			end)
@@ -262,7 +262,7 @@ function CreateMain(title)
 			SideDrop.TextSize = 14.000
 			SideDrop.TextXAlignment = Enum.TextXAlignment.Left
 			SideDrop.MouseButton1Down:Connect(function()
-				if SideDrop.TextColor3 == Color3.new(0, 255, 0) then
+				if SideDrop.TextColor3 == Color3.fromRGB(255, 0, 0) then
 					SideDrop.TextColor3 = Color3.new(255, 255, 255)
 					SideDrop.Arrow.TextColor3 = Color3.new(255, 255, 255)
 					DropContainer.Visible = false
@@ -275,8 +275,8 @@ function CreateMain(title)
 							allTabs.Parent.Arrow.TextColor3 = Color3.new(255, 255, 255)
 						end
 					end
-					SideDrop.TextColor3 = Color3.new(0, 255, 0)
-					SideDrop.Arrow.TextColor3 = Color3.new(0, 255, 0)
+					SideDrop.TextColor3 = Color3.fromRGB(255, 0, 0)
+					SideDrop.Arrow.TextColor3 = Color3.fromRGB(255, 0, 0)
 					DropContainer.Visible = true
 				end
 			end)
@@ -320,7 +320,7 @@ function CreateMain(title)
 				Button.TextSize = 14.000
 				Button.TextXAlignment = Enum.TextXAlignment.Left
 				Button.MouseButton1Down:Connect(function()
-					Button.TextColor3 = Color3.new(0, 255, 0)
+					Button.TextColor3 = Color3.fromRGB(255, 0, 0)
 					wait(0.05)
 					Button.TextColor3 = Color3.new(255, 255, 255)
 					callback(v)
@@ -347,7 +347,7 @@ function CreateMain(title)
 			SideDrop.TextSize = 14.000
 			SideDrop.TextXAlignment = Enum.TextXAlignment.Left
 			SideDrop.MouseButton1Down:Connect(function()
-				if SideDrop.TextColor3 == Color3.new(0, 255, 0) then
+				if SideDrop.TextColor3 == Color3.fromRGB(255, 0, 0) then
 					SideDrop.TextColor3 = Color3.new(255, 255, 255)
 					SideDrop.Arrow.TextColor3 = Color3.new(255, 255, 255)
 					DropContainer.Visible = false
@@ -360,8 +360,8 @@ function CreateMain(title)
 							allTabs.Parent.Arrow.TextColor3 = Color3.new(255, 255, 255)
 						end
 					end
-					SideDrop.TextColor3 = Color3.new(0, 255, 0)
-					SideDrop.Arrow.TextColor3 = Color3.new(0, 255, 0)
+					SideDrop.TextColor3 = Color3.fromRGB(255, 0, 0)
+					SideDrop.Arrow.TextColor3 = Color3.fromRGB(255, 0, 0)
 					DropContainer.Visible = true
 				end
 			end)
@@ -405,9 +405,9 @@ function CreateMain(title)
 				Button.TextSize = 14.000
 				Button.TextXAlignment = Enum.TextXAlignment.Left
 				Button.MouseButton1Down:Connect(function()
-					if Button.TextColor3 == Color3.new(0, 255, 0) then
+					if Button.TextColor3 == Color3.fromRGB(255, 0, 0) then
 					Button.TextColor3 = Color3.new(255, 255, 255)
-					else Button.TextColor3 = Color3.new(0, 255, 0) end
+					else Button.TextColor3 = Color3.fromRGB(255, 0, 0) end
 					callback(v)
 				end)
 				DropContainer.Size = UDim2.new(0, DropContainer.UIListLayout.AbsoluteContentSize.X, 0, DropContainer.UIListLayout.AbsoluteContentSize.Y)
@@ -434,7 +434,7 @@ function CreateMain(title)
 			TextBox.TextSize = 14.000
 			TextBox.TextXAlignment = Enum.TextXAlignment.Left
 			TextBox.MouseButton1Down:Connect(function()
-				TextBox.TextColor3 = Color3.new(0, 255, 0)
+				TextBox.TextColor3 = Color3.fromRGB(255, 0, 0)
 				wait(0.05)
 				TextBox.TextColor3 = Color3.new(255, 255, 255)
 				callback(Box.Text)
