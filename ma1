@@ -47,7 +47,7 @@ end
 function Forums:UIMinimize()
         if minimized then
             game.TweenService:Create(game.CoreGui[getgenv().libName].shadow.Main, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
-                Size = UDim2.new(0, 500, 0, 500)
+                Size = UDim2.new(0, 486, 0, 283)
             }):Play()
             wait()
             game.TweenService:Create(game.CoreGui[getgenv().libName].shadow, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
@@ -105,7 +105,7 @@ function Forums.new(newName)
     shadow.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
     shadow.BackgroundTransparency = 1.000
     shadow.Position = UDim2.new(0.377575755, 0, 0.382281542, 0)
-    shadow.Size = UDim2.new(0, 539, 0, 317)
+    shadow.Size = UDim2.new(0, 539, 0, 500)
     shadow.ZIndex = 0
     shadow.ImageTransparency = 1
     shadow.Image = "rbxassetid://4996891970"
