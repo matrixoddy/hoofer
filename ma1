@@ -47,7 +47,7 @@ end
 function Forums:UIMinimize()
         if minimized then
             game.TweenService:Create(game.CoreGui[getgenv().libName].shadow.Main, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
-                Size = UDim2.new(0, 539, 0, 500)
+                Size = UDim2.new(0, 500, 0, 500)
             }):Play()
             wait()
             game.TweenService:Create(game.CoreGui[getgenv().libName].shadow, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
@@ -107,7 +107,7 @@ function Forums.new(newName)
     shadow.Position = UDim2.new(0.377575755, 0, 0.382281542, 0)
     shadow.Size = UDim2.new(0, 539, 0, 500)
     shadow.ZIndex = 0
-    shadow.ImageTransparency = 5
+    shadow.ImageTransparency = 1
     shadow.Image = "rbxassetid://3883502641"
     shadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
 
@@ -117,7 +117,7 @@ function Forums.new(newName)
     Main.BorderColor3 = Color3.fromRGB(27, 27, 27)
     Main.ClipsDescendants = true
     Main.Position = UDim2.new(0.361818194, 0, 0.354368925, 0)
-    Main.Size = UDim2.new(0, 539, 0, 500) --0, 500, 0, 500
+    Main.Size = UDim2.new(0, 0, 0, 0) --0, 500, 0, 500
     
     
     header.Name = "header"
@@ -148,7 +148,7 @@ function Forums.new(newName)
     triangle1.ClipsDescendants = true
     triangle1.Position = UDim2.new(-0.302344143, 0, -0.483461976, 0)
     triangle1.Size = UDim2.new(0, 283, 0, 81)
-    triangle1.Image = "http://www.roblox.com/asset/?id=6676220228"
+    triangle1.Image = "http://www.roblox.com/asset/?id=3883502641"
     triangle1.ImageColor3 = Color3.fromRGB(130, 51, 51)
 
     triangle.Name = "triangle"
