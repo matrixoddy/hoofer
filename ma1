@@ -47,7 +47,7 @@ end
 function Forums:UIMinimize()
         if minimized then
             game.TweenService:Create(game.CoreGui[getgenv().libName].shadow.Main, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
-                Size = UDim2.new(0, 486, 0, 283)
+                Size = UDim2.new(0, 539, 0, 500)
             }):Play()
             wait()
             game.TweenService:Create(game.CoreGui[getgenv().libName].shadow, TweenInfo.new(0.1, Enum.EasingStyle.Quad, Enum.EasingDirection.InOut), {
@@ -118,6 +118,8 @@ function Forums.new(newName)
     Main.ClipsDescendants = true
     Main.Position = UDim2.new(0.361818194, 0, 0.354368925, 0)
     Main.Size = UDim2.new(0,0,0,0) --0, 500, 0, 500
+    
+    
     header.Name = "header"
     header.Parent = Main
     header.BackgroundColor3 = Color3.fromRGB(141, 56, 56)
