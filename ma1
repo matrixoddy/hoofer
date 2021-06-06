@@ -107,8 +107,8 @@ function Forums.new(newName)
     shadow.Position = UDim2.new(0.377575755, 0, 0.382281542, 0)
     shadow.Size = UDim2.new(0, 539, 0, 500)
     shadow.ZIndex = 0
-    shadow.ImageTransparency = 1
-    shadow.Image = "rbxassetid://4996891970"
+    shadow.ImageTransparency = 5
+    shadow.Image = "rbxassetid://3883502641"
     shadow.ImageColor3 = Color3.fromRGB(0, 0, 0)
 
     Main.Name = "Main"
@@ -193,16 +193,6 @@ function Forums.new(newName)
 
     pages.Name = "pages"
     pages.Parent = containerHolder
-
-ImageLabel = Instance.new("ImageLabel")
-ImageLabel.Name = "ImageLabel"
-ImageLabel.Parent = Main
-ImageLabel.BackgroundColor3 = Color3.new(1, 1, 1)
-ImageLabel.Position = UDim2.new(-0.000475523295, 0, -0.00117481197, 0)
-ImageLabel.Size = UDim2.new(0, 500, 0, 500)
-ImageLabel.Image = "rbxassetid://3883502641"
-
-
 
     UIListLayout_2.Parent = shadow
     UIListLayout_2.HorizontalAlignment = Enum.HorizontalAlignment.Center
