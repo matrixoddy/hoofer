@@ -157,7 +157,7 @@ function Forums.new(newName)
     triangle.BackgroundTransparency = 1.000
     triangle.BorderSizePixel = 0
     triangle.ClipsDescendants = true
-    triangle.Position = UDim2.new(0, 0, 0.4, 0)
+    triangle.Position = UDim2.new(0, 0, 0.15, 0)
     triangle.Size = UDim2.new(0, 80, 0, 50)
     triangle.Image = "http://www.roblox.com/asset/?id=6306175927"
     triangle.ImageColor3 = Color3.fromRGB(130, 51, 51)
