@@ -208,7 +208,9 @@ function Kavo.CreateLib(kavName, themeList)
     local pages = Instance.new("Frame")
     local Pages = Instance.new("Folder")
     local infoContainer = Instance.new("Frame")
-
+    if syn and syn.protect_gui then
+        syn.protect_gui(Kavo)
+    end
     local blurFrame = Instance.new("Frame")
 
     Kavo:DraggingEnabled(MainHeader, Main)
@@ -227,7 +229,7 @@ function Kavo.CreateLib(kavName, themeList)
     ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
     ScreenGui.ResetOnSpawn = false
 
- library.ui = ScreenGui
+ library.ui = Kavo
 
     Main.Name = "Main"
     Main.Parent = ScreenGui
@@ -237,7 +239,7 @@ function Kavo.CreateLib(kavName, themeList)
     Main.Size = UDim2.new(0, 525, 0, 318)
     Main.ClipsDescendants = true
 	local toggled = true
-	function ScreenGui.toggleui()
+	function library.toggleui()
 		toggled = not toggled
 		spawn(function()
 			if toggled then wait(0.3) end
