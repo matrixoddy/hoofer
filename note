@@ -1,6 +1,4 @@
 
-loadstring(game:HttpGet('https://raw.githubusercontent.com/IFYOUWANTBLOOD/hoofer/master/help'))()
-
 local function instance(className,properties,children)
     local object = Instance.new(className,parent)
 
