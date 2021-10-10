@@ -1,1 +1,2 @@
 _G.flytext = ly:- Keys `W` = Forward, `S` = Backwards, `A` = Left `D` = Right, Or use the Mouse and `W`.\n Fly Speed:- Makes you fly faster, Use reset to fly normal.\n\n No Clip:- Toggle on this will help you walk threw walls, This can all so can be used with Fly.
+end)
