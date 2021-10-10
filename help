@@ -1,2 +1,2 @@
-_G.flytext = Keys `W` = Forward, `S` = Backwards, `A` = Left `D` = Right, Or use the Mouse and `W`. Fly Speed:- Makes you fly faster, Use reset to fly normal.
+_G.flytext = "Keys `W` = Forward, `S` = Backwards, `A` = Left `D` = Right, Or use the Mouse and `W`. Fly Speed:- Makes you fly faster, Use reset to fly normal."
 
