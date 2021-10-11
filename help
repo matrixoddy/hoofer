@@ -1,2 +1,2 @@
 _G.flytext = "Keys `W` = Forward, `S` = Backwards, `A` = Left `D` = Right, Or use the Mouse and `W`. Fly Speed:- Makes you fly faster, Use reset to fly normal."
-_G.flytext = "[TR] To send messages in a language, say `>` followed by the target language/language code, e.g.: `>ru` or `>russian`. To disable (go back to original language), say `>d"
+_G.Translater = "[TR] To send messages in a language, say `>` followed by the target language/language code, e.g.: `>ru` or `>russian`. To disable (go back to original language), say `>d"
