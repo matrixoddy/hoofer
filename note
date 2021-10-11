@@ -241,7 +241,7 @@ function notify(t)
                 Parent = optionBar,
                 Size = udim2(0,buttonSize.X + 6,1,0),
                 Text = v,
-                TextColor3 = rgb(130,130,130),
+                TextColor3 = rgb(70,0,0),
                 TextSize = 11,
                 Font = 'Gotham',
                 BackgroundTransparency = 1,
@@ -249,12 +249,12 @@ function notify(t)
 
              button.MouseEnter:connect(function()
                 ts(button,{0.3,'Sine'},{
-                    TextColor3 = rgb(255,255,255)
+                    TextColor3 = rgb(40, 127, 71)
                 })
             end)
             button.MouseLeave:connect(function()
                 ts(button,{0.3,'Sine'},{
-                    TextColor3 = rgb(255,0,0)
+                    TextColor3 = rgb(70,0,0)
                 })
             end)
             button.MouseButton1Click:connect(function()
