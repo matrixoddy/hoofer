@@ -247,14 +247,14 @@ function notify(t)
                 BackgroundTransparency = 1,
             })
 
-            button.MouseEnter:connect(function()
+             button.MouseEnter:connect(function()
                 ts(button,{0.3,'Sine'},{
-                    TextColor3 = rgb(255,0,0)
+                    TextColor3 = rgb(255,255,255)
                 })
             end)
             button.MouseLeave:connect(function()
                 ts(button,{0.3,'Sine'},{
-                    TextColor3 = rgb(0,255,0)
+                    TextColor3 = rgb(130,130,130)
                 })
             end)
             button.MouseButton1Click:connect(function()
