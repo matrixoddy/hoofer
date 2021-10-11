@@ -236,13 +236,13 @@ function notify(t)
 
         for a,v in next, t.Options do
             v = tostring(v)
-            local buttonSize = game:service('TextService'):GetTextSize(v,14,'Gotham',Vector2.new(math.huge,14))
+            local buttonSize = game:service('TextService'):GetTextSize(v,20,'Gotham',Vector2.new(math.huge,20))
             local button = instance('TextButton',{
                 Parent = optionBar,
                 Size = udim2(0,buttonSize.X + 6,1,0),
                 Text = v,
                 TextColor3 = rgb(70,0,0),
-                TextSize = 14,
+                TextSize = 20,
                 Font = 'Gotham',
                 BackgroundTransparency = 1,
             })
