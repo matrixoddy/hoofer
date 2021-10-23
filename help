@@ -3,3 +3,4 @@ _G.Translater = "[TR] To send messages in a language, say `>` followed by the ta
 _G.Spy = "Type in chat `/spy` to turn off"
 _G.Emoji = "This can not be reset the only way is to re-join the game. Emoji list will be found on the discord server"
 _G.Grief = "To turn off Grief, Just reset character"
+_G.throw = "Put A AXE in your hand aim at anything you like with your mouse an press `T` on your keyboard."
